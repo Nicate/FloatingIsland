@@ -1,0 +1,36 @@
+# Unity
+/Projects/Rehgehstoy/Library/
+/Projects/Rehgehstoy/Temp/
+/Projects/Rehgehstoy/Obj/
+/Projects/Rehgehstoy/Build/
+/Projects/Rehgehstoy/Builds/
+/Projects/Rehgehstoy/Assets/AssetStoreTools*
+/Projects/Rehgehstoy/Assets/Plugins/
+/Projects/Rehgehstoy/Assets/Plugins.meta
+*.pidb.meta
+sysinfo.txt
+
+# Visual Studio
+ExportedObj/
+.vs/
+*.csproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.svd
+
+# Blender
+*.blend1
+
+# Substance Designer
+.autosave/
+*.resources/
+
+# Builds
+/Builds/
+
+# Large files
+*.wav
