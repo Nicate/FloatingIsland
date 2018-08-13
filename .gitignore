@@ -1,12 +1,12 @@
 # Unity
-/Projects/Rehgehstoy/Library/
-/Projects/Rehgehstoy/Temp/
-/Projects/Rehgehstoy/Obj/
-/Projects/Rehgehstoy/Build/
-/Projects/Rehgehstoy/Builds/
-/Projects/Rehgehstoy/Assets/AssetStoreTools*
-/Projects/Rehgehstoy/Assets/Plugins/
-/Projects/Rehgehstoy/Assets/Plugins.meta
+/Projects/FloatingIsland/Library/
+/Projects/FloatingIsland/Temp/
+/Projects/FloatingIsland/Obj/
+/Projects/FloatingIsland/Build/
+/Projects/FloatingIsland/Builds/
+/Projects/FloatingIsland/Assets/AssetStoreTools*
+/Projects/FloatingIsland/Assets/Plugins/
+/Projects/FloatingIsland/Assets/Plugins.meta
 *.pidb.meta
 sysinfo.txt
 
@@ -34,3 +34,4 @@ ExportedObj/
 
 # Large files
 *.wav
+*.au
