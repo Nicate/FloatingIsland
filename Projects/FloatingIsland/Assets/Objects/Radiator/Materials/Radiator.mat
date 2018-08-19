@@ -6,48 +6,60 @@ Material:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Water
-  m_Shader: {fileID: 4800000, guid: 15bebd5dc772126478f0ad39261d9472, type: 3}
-  m_ShaderKeywords: AMPLIFY_ON WAVES_ON
+  m_Name: Radiator
+  m_Shader: {fileID: 4800000, guid: 625ec23e543901f45b4a8fa9030fb41d, type: 3}
+  m_ShaderKeywords: ANIMATION_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3100
+  m_CustomRenderQueue: 3010
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - AlbedoTexture:
+        m_Texture: {fileID: 2800000, guid: cc3b78230d16e7244b209125546fe27d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - Foam_AlbedoTexture:
-        m_Texture: {fileID: 2800000, guid: 98da4636ccdca1f44adb7bbbe6cfee28, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Foam_HeightTexture:
-        m_Texture: {fileID: 2800006, guid: 98da4636ccdca1f44adb7bbbe6cfee28, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Foam_NormalTexture:
-        m_Texture: {fileID: 2800002, guid: 98da4636ccdca1f44adb7bbbe6cfee28, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Foam_RoughnessTexture:
-        m_Texture: {fileID: 2800008, guid: 98da4636ccdca1f44adb7bbbe6cfee28, type: 3}
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - NormalTexture:
+        m_Texture: {fileID: 2800002, guid: cc3b78230d16e7244b209125546fe27d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - RoughnessTexture:
+        m_Texture: {fileID: 2800008, guid: cc3b78230d16e7244b209125546fe27d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Water_AlbedoTexture:
-        m_Texture: {fileID: 2800000, guid: 785b62d102154564b8d914d7f3e493b9, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Water_HeightTexture:
-        m_Texture: {fileID: 2800006, guid: 785b62d102154564b8d914d7f3e493b9, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Water_NormalTexture:
-        m_Texture: {fileID: 2800002, guid: 785b62d102154564b8d914d7f3e493b9, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Water_RoughnessTexture:
-        m_Texture: {fileID: 2800008, guid: 785b62d102154564b8d914d7f3e493b9, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -87,26 +99,26 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Amplify: 1
-    - Amplitude: 0.1
-    - FoamDepth: 0.3
-    - Foam_TextureScale: 2
-    - Frequency: 0.2
-    - LateralFrequency: 0.5
-    - LateralSpeed: 0.02
+    - Amplitude: 0
+    - Animation: 1
+    - Depth: 2
+    - Exponent: 4
+    - FoamDepth: 1
+    - Foam_TextureScale: 1
+    - LateralFrequency: 0
+    - LateralSpeed: 0
     - MaximumTransparency: 1
-    - MinimumTransparency: 0.5
-    - Radius: 256
-    - Speed: 1
-    - VentralFrequency: 1
-    - VentralSpeed: -0.2
-    - WaterDepth: 2.5
-    - Water_TextureScale: 2
-    - WaveLength: 1
-    - WaveWidth: 1
-    - Waves: 1
-    - XFrequency: 0.5
-    - ZFrequency: 1
+    - MinimumTransparency: 0
+    - Radius: 1
+    - RotationSpeed: 0.333
+    - Speed: 0.333
+    - TextureScale: 1
+    - TranslationSpeed: -0.1
+    - VentralFrequency: 0
+    - VentralSpeed: 0
+    - WaterDepth: 1
+    - Water_TextureScale: 1
+    - Waves: 0
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
@@ -124,5 +136,6 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
+    - AlbedoColor: {r: 1, g: 0.3529412, b: 0.047058824, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

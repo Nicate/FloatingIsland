@@ -95,8 +95,9 @@ public class Manager : MonoBehaviour {
 
 				factory.stopSmoking();
 
+				// Kill the script but not the game object.
 				Destroy(factory);
-				Destroy(basePlate.gameObject);
+				Destroy(basePlate);
 			}
 		}
 
@@ -105,9 +106,10 @@ public class Manager : MonoBehaviour {
 				silos.Remove(silo);
 
 				BasePlate basePlate = silo.transform.parent.GetComponentInChildren<BasePlate>();
-
+				
+				// Kill the script but not the game object.
 				Destroy(silo);
-				Destroy(basePlate.gameObject);
+				Destroy(basePlate);
 			}
 		}
 
@@ -116,9 +118,10 @@ public class Manager : MonoBehaviour {
 				stores.Remove(store);
 
 				BasePlate basePlate = store.transform.parent.GetComponentInChildren<BasePlate>();
-
+				
+				// Kill the script but not the game object.
 				Destroy(store);
-				Destroy(basePlate.gameObject);
+				Destroy(basePlate);
 			}
 		}
 
@@ -249,5 +252,9 @@ public class Manager : MonoBehaviour {
 
 	public void restart() {
 		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+	}
+
+	public void exit() {
+		Application.Quit();
 	}
 }
