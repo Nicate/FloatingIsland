@@ -9,6 +9,9 @@ public class Manager : MonoBehaviour {
 	public Store storePrefab;
 
 	public BasePlate basePlatePrefab;
+
+	public Radiator factoryRadiatorPrefab;
+	public Radiator storeRadiatorPrefab;
 	
 	public Water water;
 	public Island island;
@@ -60,6 +63,10 @@ public class Manager : MonoBehaviour {
 
 	private Tool selectedTool;
 
+	private Factory toolFactory;
+	private Silo toolSilo;
+	private Store toolStore;
+
 
 	private float capital;
 
@@ -89,11 +96,11 @@ public class Manager : MonoBehaviour {
 	private void Update() {
 		foreach(Factory factory in factories.ToArray()) {
 			if(factory.transform.position.y < water.getLevel()) {
+				factory.stopSmoking();
+
 				factories.Remove(factory);
 
 				BasePlate basePlate = factory.transform.parent.GetComponentInChildren<BasePlate>();
-
-				factory.stopSmoking();
 
 				// Kill the script but not the game object.
 				Destroy(factory);
@@ -138,70 +145,87 @@ public class Manager : MonoBehaviour {
 		}
 		
 		if(Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.Z)) {
-			selectedTool = Tool.Factory;
-
-			factoryText.color = activeToolColor;
-			siloText.color = passiveToolColor;
-			storeText.color = passiveToolColor;
+			selectTool(Tool.Factory);
 		}
 		else if(Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.C)) {
-			selectedTool = Tool.Silo;
-			
-			factoryText.color = passiveToolColor;
-			siloText.color = activeToolColor;
-			storeText.color = passiveToolColor;
+			selectTool(Tool.Silo);
 		}
 		else if(Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.X)) {
-			selectedTool = Tool.Store;
+			selectTool(Tool.Store);
+		}
 
-			factoryText.color = passiveToolColor;
-			siloText.color = passiveToolColor;
-			storeText.color = activeToolColor;
+		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+		RaycastHit hit;
+
+		if(Physics.Raycast(ray, out hit, 500.0f, LayerMask.GetMask("Hexagons"))) {
+			Transform transform = hit.collider.transform;
+				
+			if(transform.position.y > water.getLevel() && transform.childCount == 0) {
+				float angle = Random.Range(0.0f, 360.0f);
+				Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.up);
+
+				if(selectedTool == Tool.Factory) {
+					if(toolFactory == null) {
+						toolFactory = Instantiate(factoryPrefab, transform.position, rotation, transform);
+						Instantiate(factoryRadiatorPrefab, transform.position, rotation, toolFactory.transform);
+					}
+					else {
+						toolFactory.transform.SetParent(transform, false);
+					}
+				}
+				else if(selectedTool == Tool.Silo) {
+					if(toolSilo == null) {
+						toolSilo = Instantiate(siloPrefab, transform.position, rotation, transform);
+						Instantiate(factoryRadiatorPrefab, transform.position, rotation, toolSilo.transform);
+						Instantiate(storeRadiatorPrefab, transform.position, rotation, toolSilo.transform);
+					}
+					else {
+						toolSilo.transform.SetParent(transform, false);
+					}
+				}
+				else if(selectedTool == Tool.Store) {
+					if(toolStore == null) {
+						toolStore = Instantiate(storePrefab, transform.position, rotation, transform);
+						Instantiate(storeRadiatorPrefab, transform.position, rotation, toolStore.transform);
+					}
+					else {
+						toolStore.transform.SetParent(transform, false);
+					}
+				}
+			}
 		}
 
 		if(Input.GetMouseButtonDown(0)) {
-			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+			if(toolFactory != null && capital >= factoryPrice) {
+				Instantiate(basePlatePrefab, toolFactory.transform.position, Quaternion.identity, toolFactory.transform.parent);
+				Factory factory = Instantiate(factoryPrefab, toolFactory.transform.position, toolFactory.transform.rotation, toolFactory.transform.parent);
 
-			RaycastHit hit;
+				factories.Add(factory);
 
-			if(Physics.Raycast(ray, out hit, 500.0f, LayerMask.GetMask("Hexagons"))) {
-				Transform transform = hit.collider.transform;
-				
-				if(transform.position.y > water.getLevel() && transform.childCount == 0) {
-					float angle = Random.Range(0.0f, 360.0f);
-					Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.up);
+				weight += factoryWeight;
 
-					if(selectedTool == Tool.Factory && capital >= factoryPrice) {
-						Instantiate(basePlatePrefab, transform.position, Quaternion.identity, transform);
-						Factory factory = Instantiate(factoryPrefab, transform.position, rotation, transform);
+				channel(factoryPrice);
+			}
+			else if(toolSilo != null && capital >= siloPrice) {
+				Instantiate(basePlatePrefab, toolSilo.transform.position, Quaternion.identity, toolSilo.transform.parent);
+				Silo silo = Instantiate(siloPrefab, toolSilo.transform.position, toolSilo.transform.rotation, toolSilo.transform.parent);
 
-						factories.Add(factory);
+				silos.Add(silo);
 
-						weight += factoryWeight;
+				weight += siloWeight;
 
-						channel(factoryPrice);
-					}
-					else if(selectedTool == Tool.Silo && capital >= siloPrice) {
-						Instantiate(basePlatePrefab, transform.position, Quaternion.identity, transform);
-						Silo silo = Instantiate(siloPrefab, transform.position, rotation, transform);
+				channel(siloPrice);
+			}
+			else if(toolStore != null && capital >= storePrice) {
+				Instantiate(basePlatePrefab, toolStore.transform.position, Quaternion.identity, toolStore.transform.parent);
+				Store store = Instantiate(storePrefab, toolStore.transform.position, toolStore.transform.rotation, toolStore.transform.parent);
 
-						silos.Add(silo);
+				stores.Add(store);
 
-						weight += siloWeight;
+				weight += storeWeight;
 
-						channel(siloPrice);
-					}
-					else if(selectedTool == Tool.Store && capital >= storePrice) {
-						Instantiate(basePlatePrefab, transform.position, Quaternion.identity, transform);
-						Store store = Instantiate(storePrefab, transform.position, rotation, transform);
-
-						stores.Add(store);
-
-						weight += storeWeight;
-
-						channel(storePrice);
-					}
-				}
+				channel(storePrice);
 			}
 		}
 
@@ -216,6 +240,46 @@ public class Manager : MonoBehaviour {
 		RenderSettings.fogDensity = Mathf.Lerp(minimumDensity, maximumDensity, smog);
 
 		island.sink(weight * -weightFactor);
+	}
+
+
+	private void selectTool(Tool tool) {
+		if(tool != Tool.Factory && selectedTool == Tool.Factory) {
+			factoryText.color = passiveToolColor;
+			
+			Destroy(toolFactory.gameObject);
+			toolFactory = null;
+		}
+
+		if(tool != Tool.Silo && selectedTool == Tool.Silo) {
+			siloText.color = passiveToolColor;
+
+			Destroy(toolSilo.gameObject);
+			toolSilo = null;
+		}
+
+		if(tool != Tool.Store && selectedTool == Tool.Store) {
+			storeText.color = passiveToolColor;
+
+			Destroy(toolStore.gameObject);
+			toolStore = null;
+		}
+
+		if(tool == Tool.Factory && selectedTool != Tool.Factory) {
+			selectedTool = Tool.Factory;
+
+			factoryText.color = activeToolColor;
+		}
+		else if(tool == Tool.Silo && selectedTool != Tool.Silo) {
+			selectedTool = Tool.Silo;
+			
+			siloText.color = activeToolColor;
+		}
+		else if(tool == Tool.Store && selectedTool != Tool.Store) {
+			selectedTool = Tool.Store;
+			
+			storeText.color = activeToolColor;
+		}
 	}
 
 

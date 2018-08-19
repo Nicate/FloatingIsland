@@ -764,7 +764,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   production: 104.767
-  range: 3
+  range: 3.1
   filthiness: 0.01
 --- !u!198 &198315333805055228
 ParticleSystem:
