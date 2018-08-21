@@ -8,7 +8,7 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: StoreRadiator
   m_Shader: {fileID: 4800000, guid: 625ec23e543901f45b4a8fa9030fb41d, type: 3}
-  m_ShaderKeywords: ANIMATION_ON
+  m_ShaderKeywords: ANIMATION_ON ROTATION_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -20,6 +20,14 @@ Material:
     m_TexEnvs:
     - AlbedoTexture:
         m_Texture: {fileID: 2800000, guid: cc3b78230d16e7244b209125546fe27d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - AlpaTexture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - AlphaTexture:
+        m_Texture: {fileID: 2800010, guid: cc3b78230d16e7244b209125546fe27d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Foam_AlbedoTexture:
@@ -107,11 +115,15 @@ Material:
     - Foam_TextureScale: 1
     - LateralFrequency: 0
     - LateralSpeed: 0
+    - MaximumAlpha: 1
     - MaximumTransparency: 1
+    - MinimumAlpha: 0.75
     - MinimumTransparency: 0
-    - Radius: 4
+    - Radius: 4.49
+    - Rotation: 1
     - RotationSpeed: -0.1
-    - Speed: 0.333
+    - Sides: 36
+    - Speed: -0.1
     - TextureScale: 1
     - TranslationSpeed: -0.1
     - VentralFrequency: 0
@@ -136,6 +148,6 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - AlbedoColor: {r: 0.9368797, g: 0.20300001, b: 1, a: 1}
+    - AlbedoColor: {r: 0.25199997, g: 0.50426996, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

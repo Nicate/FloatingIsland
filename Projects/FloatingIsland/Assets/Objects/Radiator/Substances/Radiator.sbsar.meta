@@ -6,11 +6,7 @@ ScriptedImporter:
     400000: Radiator/Radiator/Transform
     2100000: mat.Radiator
     2300000: Radiator/Radiator/MeshRenderer
-    2800000: Radiator_Base Color
-    2800002: Radiator_Normal
-    2800004: Radiator_Metallic
-    2800006: Radiator_Height
-    2800008: Radiator_Roughness
+    2800010: Radiator_Alpha
     3300000: Radiator/Radiator/MeshFilter
     11400000: sbsar
     11400002: graph0
@@ -27,9 +23,10 @@ ScriptedImporter:
     generateAllOutputs: 1
     generateMipMaps: 1
     preset: " <sbspreset pkgurl=\"pkg://Radiator\" label=\"\" >\n  <presetinput identifier=\"$outputsize\"
-      uid=\"748767622\" type=\"8\" value=\"10,10\" />\n </sbspreset>\n"
+      uid=\"748767622\" type=\"8\" value=\"10,10\" />\n  <presetinput identifier=\"Minimum\"
+      uid=\"1499500399\" type=\"0\" value=\"0.75\" />\n </sbspreset>\n"
     shaderName: Standard
-    outputNames: Base Color,Normal,Metallic,Height
+    outputNames: 
     texturePackingList:
     - outputName: Base Color
       alphaSource: Base Color
