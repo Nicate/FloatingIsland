@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class Factory : MonoBehaviour {
+public class Factory : Building {
 	public float production = 0.0f;
 
 	public float range = 1.0f;

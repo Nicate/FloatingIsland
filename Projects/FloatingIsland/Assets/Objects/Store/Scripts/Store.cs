@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class Store : MonoBehaviour {
+public class Store : Building {
 	public float consumption = 0.0f;
 
 	public float range = 1.0f;

@@ -1,0 +1,82 @@
+fileFormatVersion: 2
+guid: c722737b2085c5b4780ead6cb5bb6780
+ScriptedImporter:
+  fileIDToRecycleName:
+    100000: Plant/Plant
+    400000: Plant/Plant/Transform
+    2100000: mat.Plant
+    2300000: Plant/Plant/MeshRenderer
+    2800000: Plant_Base Color
+    2800002: Plant_Normal
+    2800004: Plant_Metallic
+    2800006: Plant_Height
+    2800008: Plant_Roughness
+    3300000: Plant/Plant/MeshFilter
+    11400000: sbsar
+    11400002: graph0
+    13500000: Plant/Plant/SphereCollider
+    100100000: Plant
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 232528478, guid: 43a8bbf65be290d44ba52b94476242b9, type: 3}
+  mGraphInstanceData:
+  - graphLabel: Plant
+    graphDescIndex: 0
+    generateAllOutputs: 1
+    generateMipMaps: 1
+    preset: " <sbspreset pkgurl=\"pkg://Plant\" label=\"\" >\n  <presetinput identifier=\"$outputsize\"
+      uid=\"3381996924\" type=\"8\" value=\"10,10\" />\n  <presetinput identifier=\"$randomseed\"
+      uid=\"2665954094\" type=\"4\" value=\"9780\" />\n </sbspreset>\n"
+    shaderName: Standard
+    outputNames: 
+    texturePackingList:
+    - outputName: Base Color
+      alphaSource: Base Color
+    - outputName: Normal
+      alphaSource: Normal
+    - outputName: Roughness
+      alphaSource: Roughness
+    - outputName: Metallic
+      alphaSource: Smoothness
+    - outputName: Height
+      alphaSource: Height
+    colorSpaceList:
+    - outputName: Base Color
+      bLinear: 0
+    - outputName: Normal
+      bLinear: 1
+    - outputName: Roughness
+      bLinear: 1
+    - outputName: Metallic
+      bLinear: 1
+    - outputName: Height
+      bLinear: 1
+    inputTextureMap: []
+    targetSettingList:
+    - label: Default
+      bOverride: 0
+      bLockRatio: 1
+      bHighQuality: 1
+      textureWidth: 1024
+      textureHeight: 1024
+      textureFormat: 0
+      loadBehavior: 0
+    - label: Standalone
+      bOverride: 0
+      bLockRatio: 1
+      bHighQuality: 0
+      textureWidth: 256
+      textureHeight: 256
+      textureFormat: 0
+      loadBehavior: 0
+    - label: iPhone
+      bOverride: 0
+      bLockRatio: 1
+      bHighQuality: 0
+      textureWidth: 256
+      textureHeight: 256
+      textureFormat: 0
+      loadBehavior: 0
+    material: {fileID: 2100000, guid: c722737b2085c5b4780ead6cb5bb6780, type: 3}

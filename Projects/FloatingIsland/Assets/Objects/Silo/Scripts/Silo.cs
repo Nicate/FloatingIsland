@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class Silo : MonoBehaviour {
+public class Silo : Building {
 	public float capacity = 0.0f;
 
 
