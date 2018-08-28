@@ -18,6 +18,22 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Base_AlbedoTexture:
+        m_Texture: {fileID: 2800000, guid: 34dc9549605c73c4883fcfccfcc0d368, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Base_HeightTexture:
+        m_Texture: {fileID: 2800006, guid: 34dc9549605c73c4883fcfccfcc0d368, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Base_NormalTexture:
+        m_Texture: {fileID: 2800002, guid: 34dc9549605c73c4883fcfccfcc0d368, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Base_RoughnessTexture:
+        m_Texture: {fileID: 2800008, guid: 34dc9549605c73c4883fcfccfcc0d368, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - Side_AlbedoTexture:
         m_Texture: {fileID: 2800000, guid: ff4cb4ded95a77946b516eaa908eb44d, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -95,6 +111,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Base: 0
+    - Base_TextureScale: 1
     - Depth: 0.1
     - MaximumAngle: 80
     - MinimumAngle: 30

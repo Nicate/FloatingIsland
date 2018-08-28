@@ -10,6 +10,7 @@ ScriptedImporter:
     2800002: BasePlate_Normal
     2800004: BasePlate_Metallic
     2800006: BasePlate_Height
+    2800008: BasePlate_Roughness
     3300000: BasePlate/BasePlate/MeshFilter
     11400000: sbsar
     11400002: graph0
@@ -23,7 +24,7 @@ ScriptedImporter:
   mGraphInstanceData:
   - graphLabel: BasePlate
     graphDescIndex: 0
-    generateAllOutputs: 0
+    generateAllOutputs: 1
     generateMipMaps: 1
     preset: " <sbspreset pkgurl=\"pkg://BasePlate\" label=\"\" >\n  <presetinput identifier=\"$outputsize\"
       uid=\"300951000\" type=\"8\" value=\"10,10\" />\n </sbspreset>\n"

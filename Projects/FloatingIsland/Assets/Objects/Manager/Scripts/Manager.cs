@@ -8,8 +8,6 @@ public class Manager : MonoBehaviour {
 	public Silo siloPrefab;
 	public Store storePrefab;
 
-	public BasePlate basePlatePrefab;
-
 	public Radiator factoryRadiatorPrefab;
 	public Radiator storeRadiatorPrefab;
 	
@@ -100,35 +98,26 @@ public class Manager : MonoBehaviour {
 
 				factories.Remove(factory);
 
-				BasePlate basePlate = factory.transform.parent.GetComponentInChildren<BasePlate>();
-
 				// Kill the script but not the game object.
 				Destroy(factory);
-				Destroy(basePlate);
 			}
 		}
 
 		foreach(Silo silo in silos.ToArray()) {
 			if(silo.transform.position.y < water.getLevel()) {
 				silos.Remove(silo);
-
-				BasePlate basePlate = silo.transform.parent.GetComponentInChildren<BasePlate>();
 				
 				// Kill the script but not the game object.
 				Destroy(silo);
-				Destroy(basePlate);
 			}
 		}
 
 		foreach(Store store in stores.ToArray()) {
 			if(store.transform.position.y < water.getLevel()) {
 				stores.Remove(store);
-
-				BasePlate basePlate = store.transform.parent.GetComponentInChildren<BasePlate>();
 				
 				// Kill the script but not the game object.
 				Destroy(store);
-				Destroy(basePlate);
 			}
 		}
 
@@ -198,7 +187,9 @@ public class Manager : MonoBehaviour {
 
 		if(Input.GetMouseButtonDown(0)) {
 			if(toolFactory != null && capital >= factoryPrice) {
-				Instantiate(basePlatePrefab, toolFactory.transform.position, Quaternion.identity, toolFactory.transform.parent);
+				Hexagon hexagon = hit.collider.transform.GetComponent<Hexagon>();
+				hexagon.enableBasePlate();
+
 				Factory factory = Instantiate(factoryPrefab, toolFactory.transform.position, toolFactory.transform.rotation, toolFactory.transform.parent);
 
 				factories.Add(factory);
@@ -208,7 +199,9 @@ public class Manager : MonoBehaviour {
 				channel(factoryPrice);
 			}
 			else if(toolSilo != null && capital >= siloPrice) {
-				Instantiate(basePlatePrefab, toolSilo.transform.position, Quaternion.identity, toolSilo.transform.parent);
+				Hexagon hexagon = hit.collider.transform.GetComponent<Hexagon>();
+				hexagon.enableBasePlate();
+
 				Silo silo = Instantiate(siloPrefab, toolSilo.transform.position, toolSilo.transform.rotation, toolSilo.transform.parent);
 
 				silos.Add(silo);
@@ -218,7 +211,9 @@ public class Manager : MonoBehaviour {
 				channel(siloPrice);
 			}
 			else if(toolStore != null && capital >= storePrice) {
-				Instantiate(basePlatePrefab, toolStore.transform.position, Quaternion.identity, toolStore.transform.parent);
+				Hexagon hexagon = hit.collider.transform.GetComponent<Hexagon>();
+				hexagon.enableBasePlate();
+
 				Store store = Instantiate(storePrefab, toolStore.transform.position, toolStore.transform.rotation, toolStore.transform.parent);
 
 				stores.Add(store);
