@@ -117,7 +117,7 @@ Material:
     - MaximumAngle: 89
     - MinimumAngle: 20
     - Side_TextureScale: 4
-    - Top_TextureScale: 24
+    - Top_TextureScale: 1
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1

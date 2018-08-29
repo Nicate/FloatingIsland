@@ -27,8 +27,7 @@ ScriptedImporter:
     generateAllOutputs: 1
     generateMipMaps: 1
     preset: " <sbspreset pkgurl=\"pkg://Grass\" label=\"\" >\n  <presetinput identifier=\"$outputsize\"
-      uid=\"3399204861\" type=\"8\" value=\"10,10\" />\n  <presetinput identifier=\"$randomseed\"
-      uid=\"2649336239\" type=\"4\" value=\"9780\" />\n </sbspreset>\n"
+      uid=\"3399204861\" type=\"8\" value=\"10,10\" />\n </sbspreset>\n"
     shaderName: Standard
     outputNames: 
     texturePackingList:
