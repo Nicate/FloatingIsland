@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
 public class Factory : Building {
+	[Header("Factory")]
 	public float production = 0.0f;
 
 	public float range = 1.0f;

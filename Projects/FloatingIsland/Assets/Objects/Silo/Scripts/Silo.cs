@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
 public class Silo : Building {
+	[Header("Silo")]
 	public float capacity = 0.0f;
 
 

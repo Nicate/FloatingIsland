@@ -17,7 +17,8 @@
 		Fade("Fade", Range(0.0, 1.0)) = 0.0
 	}
 	SubShader {
-		Tags { "Queue"="Transparent" "RenderType"="Transparent" }
+		// The render queue is hard-coded to 3200 for now since changing it from code does not work.
+		Tags { "Queue"="Transparent+200" "RenderType"="Transparent" }
 		LOD 200
 
 		CGPROGRAM

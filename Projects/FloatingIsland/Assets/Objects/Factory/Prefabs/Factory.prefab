@@ -735,6 +735,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8527ee13bc2f55a40ab14c62b68310bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingShader: {fileID: 4800000, guid: 55d2d2231bfae2a489e570ca554b1d5f, type: 3}
+  previewShader: {fileID: 4800000, guid: 26fd11bb89c488146ab0f6f70f354a46, type: 3}
+  buildingShaderRenderQueue: 2000
+  previewShaderRenderQueue: 3200
+  colorMaterialPropertyName: AlbedoColor
+  effectMaterialPropertyName: Effect
+  fadeMaterialPropertyName: Fade
   production: 104.767
   range: 3.1
   filthiness: 0.01

@@ -49,6 +49,8 @@ public class Manager : MonoBehaviour {
 
 	public float rayCastDistance = 500.0f;
 
+	public float toolBuildingFade = 0.0f;
+
 
 	private List<Factory> factories;
 	private List<Silo> silos;
@@ -158,6 +160,9 @@ public class Manager : MonoBehaviour {
 					if(toolFactory == null) {
 						toolFactory = Instantiate(factoryPrefab, transform.position, rotation, transform);
 
+						toolFactory.usePreviewShader();
+						toolFactory.setFade(toolBuildingFade);
+
 						toolFactory.enableRadiators();
 					}
 					else {
@@ -167,6 +172,9 @@ public class Manager : MonoBehaviour {
 				else if(selectedTool == Tool.Silo) {
 					if(toolSilo == null) {
 						toolSilo = Instantiate(siloPrefab, transform.position, rotation, transform);
+						
+						toolSilo.usePreviewShader();
+						toolSilo.setFade(toolBuildingFade);
 
 						toolSilo.enableRadiators();
 					}
@@ -177,6 +185,9 @@ public class Manager : MonoBehaviour {
 				else if(selectedTool == Tool.Store) {
 					if(toolStore == null) {
 						toolStore = Instantiate(storePrefab, transform.position, rotation, transform);
+						
+						toolStore.usePreviewShader();
+						toolStore.setFade(toolBuildingFade);
 
 						toolStore.enableRadiators();
 					}

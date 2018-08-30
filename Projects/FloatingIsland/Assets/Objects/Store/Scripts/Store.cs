@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
 public class Store : Building {
+	[Header("Store")]
 	public float consumption = 0.0f;
 
 	public float range = 1.0f;
