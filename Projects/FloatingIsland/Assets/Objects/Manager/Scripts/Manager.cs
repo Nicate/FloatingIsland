@@ -8,8 +8,7 @@ public class Manager : MonoBehaviour {
 	public Silo siloPrefab;
 	public Store storePrefab;
 
-	public Radiator factoryRadiatorPrefab;
-	public Radiator storeRadiatorPrefab;
+	public Puff puffPrefab;
 	
 	public Water water;
 	public Island island;
@@ -200,6 +199,8 @@ public class Manager : MonoBehaviour {
 				weight += factoryWeight;
 
 				channel(factoryPrice);
+
+				Instantiate(puffPrefab, toolFactory.transform.position, Quaternion.identity);
 			}
 			else if(toolSilo != null && capital >= siloPrice) {
 				Hexagon hexagon = hit.collider.transform.GetComponent<Hexagon>();
@@ -212,6 +213,8 @@ public class Manager : MonoBehaviour {
 				weight += siloWeight;
 
 				channel(siloPrice);
+
+				Instantiate(puffPrefab, toolSilo.transform.position, Quaternion.identity);
 			}
 			else if(toolStore != null && capital >= storePrice) {
 				Hexagon hexagon = hit.collider.transform.GetComponent<Hexagon>();
@@ -224,6 +227,8 @@ public class Manager : MonoBehaviour {
 				weight += storeWeight;
 
 				channel(storePrice);
+
+				Instantiate(puffPrefab, toolStore.transform.position, Quaternion.identity);
 			}
 		}
 
