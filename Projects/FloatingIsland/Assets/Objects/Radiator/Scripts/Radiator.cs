@@ -5,8 +5,4 @@ public class Radiator : MonoBehaviour {
 		// Enable the depth texture so we can do depth shading.
 		Camera.main.depthTextureMode = DepthTextureMode.Depth;
 	}
-	
-	private void Update() {
-
-	}
 }

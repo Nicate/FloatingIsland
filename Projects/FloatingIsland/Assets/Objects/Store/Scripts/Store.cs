@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Store : Building {
 	public float consumption = 0.0f;
@@ -7,16 +6,6 @@ public class Store : Building {
 	public float range = 1.0f;
 
 	public float price = 0.0f;
-	
-	
-	private void Start() {
-		
-	}
-	
-
-	private void Update() {
-		
-	}
 
 
 	public void run(Manager manager) {
@@ -41,6 +30,13 @@ public class Store : Building {
 			float sold = target.withdraw(consumed);
 			
 			manager.funnel(sold * price);
+
+			// We were able to consume.
+			enableParticleSystems();
+		}
+		else {
+			// We were unable to consume.
+			disableParticleSystems();
 		}
 	}
 }

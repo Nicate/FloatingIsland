@@ -48,6 +48,8 @@ public class Manager : MonoBehaviour {
 	public Color activeToolColor;
 	public Color passiveToolColor;
 
+	public float rayCastDistance = 500.0f;
+
 
 	private List<Factory> factories;
 	private List<Silo> silos;
@@ -56,7 +58,8 @@ public class Manager : MonoBehaviour {
 	private enum Tool {
 		Factory,
 		Silo,
-		Store
+		Store,
+		None
 	}
 
 	private Tool selectedTool;
@@ -94,30 +97,25 @@ public class Manager : MonoBehaviour {
 	private void Update() {
 		foreach(Factory factory in factories.ToArray()) {
 			if(factory.transform.position.y < water.getLevel()) {
-				factory.stopSmoking();
+				factory.evacuate();
 
 				factories.Remove(factory);
-
-				// Kill the script but not the game object.
-				Destroy(factory);
 			}
 		}
 
 		foreach(Silo silo in silos.ToArray()) {
 			if(silo.transform.position.y < water.getLevel()) {
+				silo.evacuate();
+
 				silos.Remove(silo);
-				
-				// Kill the script but not the game object.
-				Destroy(silo);
 			}
 		}
 
 		foreach(Store store in stores.ToArray()) {
 			if(store.transform.position.y < water.getLevel()) {
+				store.evacuate();
+
 				stores.Remove(store);
-				
-				// Kill the script but not the game object.
-				Destroy(store);
 			}
 		}
 
@@ -142,12 +140,15 @@ public class Manager : MonoBehaviour {
 		else if(Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.X)) {
 			selectTool(Tool.Store);
 		}
+		else if(Input.GetKeyDown(KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.V)) {
+			selectTool(Tool.None);
+		}
 
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
 		RaycastHit hit;
 
-		if(Physics.Raycast(ray, out hit, 500.0f, LayerMask.GetMask("Hexagons"))) {
+		if(Physics.Raycast(ray, out hit, rayCastDistance, LayerMask.GetMask("Hexagons"))) {
 			Transform transform = hit.collider.transform;
 				
 			if(transform.position.y > water.getLevel() && transform.childCount == 0) {
@@ -157,7 +158,8 @@ public class Manager : MonoBehaviour {
 				if(selectedTool == Tool.Factory) {
 					if(toolFactory == null) {
 						toolFactory = Instantiate(factoryPrefab, transform.position, rotation, transform);
-						Instantiate(factoryRadiatorPrefab, transform.position, rotation, toolFactory.transform);
+
+						toolFactory.enableRadiators();
 					}
 					else {
 						toolFactory.transform.SetParent(transform, false);
@@ -166,8 +168,8 @@ public class Manager : MonoBehaviour {
 				else if(selectedTool == Tool.Silo) {
 					if(toolSilo == null) {
 						toolSilo = Instantiate(siloPrefab, transform.position, rotation, transform);
-						Instantiate(factoryRadiatorPrefab, transform.position, rotation, toolSilo.transform);
-						Instantiate(storeRadiatorPrefab, transform.position, rotation, toolSilo.transform);
+
+						toolSilo.enableRadiators();
 					}
 					else {
 						toolSilo.transform.SetParent(transform, false);
@@ -176,7 +178,8 @@ public class Manager : MonoBehaviour {
 				else if(selectedTool == Tool.Store) {
 					if(toolStore == null) {
 						toolStore = Instantiate(storePrefab, transform.position, rotation, transform);
-						Instantiate(storeRadiatorPrefab, transform.position, rotation, toolStore.transform);
+
+						toolStore.enableRadiators();
 					}
 					else {
 						toolStore.transform.SetParent(transform, false);

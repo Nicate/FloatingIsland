@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Silo : Building {
 	public float capacity = 0.0f;
@@ -10,11 +9,6 @@ public class Silo : Building {
 	
 	private void Start() {
 		storage = 0.0f;
-	}
-	
-
-	private void Update() {
-		
 	}
 
 

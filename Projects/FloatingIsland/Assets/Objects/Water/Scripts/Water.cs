@@ -13,6 +13,7 @@ public class Water : MonoBehaviour {
 
 		targetLevel = transform.position.y;
 	}
+
 	
 	private void Update() {
 		float delta = speed * Time.deltaTime;

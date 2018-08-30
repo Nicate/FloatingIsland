@@ -332,6 +332,7 @@ public class Island : MonoBehaviour {
 		}
 	}
 	
+
 	private void Update() {
 		float delta = sinkSpeed * Time.deltaTime;
 		

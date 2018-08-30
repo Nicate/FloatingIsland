@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Factory : Building {
 	public float production = 0.0f;
@@ -7,18 +6,6 @@ public class Factory : Building {
 	public float range = 1.0f;
 
 	public float filthiness = 0.0f;
-
-
-	private void Start() {
-		foreach(ParticleSystem particleSystem in transform.GetComponentsInChildren<ParticleSystem>()) {
-			particleSystem.Stop();
-		}
-	}
-	
-
-	private void Update() {
-		
-	}
 
 
 	public void run(Manager manager) {
@@ -45,26 +32,11 @@ public class Factory : Building {
 			manager.pollute(deposited * filthiness);
 
 			// We were able to produce.
-			foreach(ParticleSystem particleSystem in transform.GetComponentsInChildren<ParticleSystem>()) {
-				if(!particleSystem.isPlaying) {
-					particleSystem.Play();
-				}
-			}
+			enableParticleSystems();
 		}
 		else {
 			// We were unable to produce.
-			foreach(ParticleSystem particleSystem in transform.GetComponentsInChildren<ParticleSystem>()) {
-				if(particleSystem.isPlaying) {
-					particleSystem.Stop();
-				}
-			}
-		}
-	}
-	
-	
-	public void stopSmoking() {
-		foreach(ParticleSystem particleSystem in transform.GetComponentsInChildren<ParticleSystem>()) {
-			particleSystem.Stop();
+			disableParticleSystems();
 		}
 	}
 }
