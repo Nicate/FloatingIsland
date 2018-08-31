@@ -43,11 +43,16 @@ public class Island : MonoBehaviour {
 	[Space]
 	public float minimumRockAngle = 90.0f;
 
-	[Header("Gameplay")]
-	public float sinkSpeed = 0.2f;
+	[Header("Animation")]
+	public float ease = 1.0f;
+	public float bouyancy = 1.0f;
+	public float friction = 1.0f;
 
-
+	
+	private float level;
 	private float targetLevel;
+
+	private float speed;
 
 
 	private Stochast random;
@@ -104,7 +109,10 @@ public class Island : MonoBehaviour {
 	
 
 	void Start() {
+		level = transform.position.y;
 		targetLevel = transform.position.y;
+
+		speed = 0.0f;
 
 		random = new Stochast();
 
@@ -331,31 +339,31 @@ public class Island : MonoBehaviour {
 			}
 		}
 	}
-	
+
 
 	private void Update() {
-		float delta = sinkSpeed * Time.deltaTime;
+		float displacement = targetLevel - level;
+		float acceleration = bouyancy * displacement - friction * speed;
+
+		speed += acceleration * Time.deltaTime;
+		level += speed * Time.deltaTime;
 		
 		Vector3 position = transform.position;
-		
-		float level = position.y;
-
-		// We can only go down.
-		if(level > targetLevel) {
-			level -= delta;
-
-			if(level < targetLevel) {
-				level = targetLevel;
-			}
-		}
-
 		position.y = level;
-
 		transform.position = position;
 	}
 
 
-	public void sink(float level) {
+	public void impact(float impact) {
+		speed += ease * impact;
+	}
+
+
+	public float getLevel() {
+		return targetLevel;
+	}
+
+	public void setLevel(float level) {
 		targetLevel = level;
 	}
 }

@@ -104,4 +104,9 @@ public class Building : MonoBehaviour {
 		disableParticleSystems();
 		disableRadiators();
 	}
+
+
+	public float getHeight(Island island) {
+		return transform.position.y - island.transform.position.y;
+	}
 }

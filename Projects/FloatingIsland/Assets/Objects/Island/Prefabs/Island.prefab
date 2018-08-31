@@ -78,4 +78,6 @@ MonoBehaviour:
   minimumGrassHeight: 0.5
   minimumSnowHeight: 3
   minimumRockAngle: 45
-  sinkSpeed: 0.5
+  ease: 15
+  bouyancy: 100
+  friction: 4

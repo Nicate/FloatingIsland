@@ -97,7 +97,7 @@ public class Manager : MonoBehaviour {
 
 	private void Update() {
 		foreach(Factory factory in factories.ToArray()) {
-			if(factory.transform.position.y < water.getLevel()) {
+			if(factory.getHeight(island) + island.getLevel() < water.getLevel()) {
 				factory.evacuate();
 
 				factories.Remove(factory);
@@ -105,7 +105,7 @@ public class Manager : MonoBehaviour {
 		}
 
 		foreach(Silo silo in silos.ToArray()) {
-			if(silo.transform.position.y < water.getLevel()) {
+			if(silo.getHeight(island) + island.getLevel() < water.getLevel()) {
 				silo.evacuate();
 
 				silos.Remove(silo);
@@ -113,7 +113,7 @@ public class Manager : MonoBehaviour {
 		}
 
 		foreach(Store store in stores.ToArray()) {
-			if(store.transform.position.y < water.getLevel()) {
+			if(store.getHeight(island) + island.getLevel() < water.getLevel()) {
 				store.evacuate();
 
 				stores.Remove(store);
@@ -198,52 +198,70 @@ public class Manager : MonoBehaviour {
 			}
 		}
 
+		bool impact = false;
+		float addedWeight = 0.0f;
+
 		if(Input.GetMouseButtonDown(0)) {
 			if(toolFactory != null && capital >= factoryPrice) {
 				Hexagon hexagon = hit.collider.transform.GetComponent<Hexagon>();
+
 				hexagon.enableBasePlate();
 
 				Factory factory = Instantiate(factoryPrefab, toolFactory.transform.position, toolFactory.transform.rotation, toolFactory.transform.parent);
 
+				hexagon.occupy(factory);
+
 				factories.Add(factory);
 
-				weight += factoryWeight;
+				addedWeight = factoryWeight;
 
 				channel(factoryPrice);
 
 				Instantiate(puffPrefab, toolFactory.transform.position, Quaternion.identity);
+
+				impact = true;
 			}
 			else if(toolSilo != null && capital >= siloPrice) {
 				Hexagon hexagon = hit.collider.transform.GetComponent<Hexagon>();
+
 				hexagon.enableBasePlate();
 
 				Silo silo = Instantiate(siloPrefab, toolSilo.transform.position, toolSilo.transform.rotation, toolSilo.transform.parent);
 
+				hexagon.occupy(silo);
+
 				silos.Add(silo);
 
-				weight += siloWeight;
+				addedWeight = siloWeight;
 
 				channel(siloPrice);
 
 				Instantiate(puffPrefab, toolSilo.transform.position, Quaternion.identity);
+
+				impact = true;
 			}
 			else if(toolStore != null && capital >= storePrice) {
 				Hexagon hexagon = hit.collider.transform.GetComponent<Hexagon>();
+
 				hexagon.enableBasePlate();
 
 				Store store = Instantiate(storePrefab, toolStore.transform.position, toolStore.transform.rotation, toolStore.transform.parent);
 
+				hexagon.occupy(store);
+
 				stores.Add(store);
 
-				weight += storeWeight;
+				addedWeight = storeWeight;
 
 				channel(storePrice);
 
 				Instantiate(puffPrefab, toolStore.transform.position, Quaternion.identity);
+
+				impact = true;
 			}
 		}
 
-		water.rise(pollution * pollutionFactor);
+		water.setLevel(pollution * pollutionFactor);
 
 		float smog = Mathf.Clamp01(pollution * fogFactor);
 
@@ -252,8 +270,13 @@ public class Manager : MonoBehaviour {
 		Camera.main.backgroundColor = color;
 
 		RenderSettings.fogDensity = Mathf.Lerp(minimumDensity, maximumDensity, smog);
+		
+		if(impact) {
+			weight += addedWeight;
 
-		island.sink(weight * -weightFactor);
+			island.setLevel(weight * -weightFactor);
+			island.impact(addedWeight * -weightFactor);
+		}
 	}
 
 
