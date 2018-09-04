@@ -14,7 +14,9 @@ public class Building : MonoBehaviour {
 
 
 	public void useBuildingShader() {
-		foreach(MeshRenderer renderer in GetComponentsInChildren<MeshRenderer>()) {
+		foreach(Block block in GetComponentsInChildren<Block>()) {
+			MeshRenderer renderer = block.GetComponent<MeshRenderer>();
+
 			foreach(Material material in renderer.materials) {
 				material.shader = buildingShader;
 
@@ -28,7 +30,9 @@ public class Building : MonoBehaviour {
 	}
 
 	public void usePreviewShader() {
-		foreach(MeshRenderer renderer in GetComponentsInChildren<MeshRenderer>()) {
+		foreach(Block block in GetComponentsInChildren<Block>()) {
+			MeshRenderer renderer = block.GetComponent<MeshRenderer>();
+
 			foreach(Material material in renderer.materials) {
 				material.shader = previewShader;
 
@@ -44,7 +48,9 @@ public class Building : MonoBehaviour {
 	
 
 	public void setColor(Color color) {
-		foreach(MeshRenderer renderer in GetComponentsInChildren<MeshRenderer>()) {
+		foreach(Block block in GetComponentsInChildren<Block>()) {
+			MeshRenderer renderer = block.GetComponent<MeshRenderer>();
+
 			foreach(Material material in renderer.materials) {
 				material.SetColor(colorMaterialPropertyName, color);
 			}
@@ -52,7 +58,9 @@ public class Building : MonoBehaviour {
 	}
 	
 	public void setEffect(float effect) {
-		foreach(MeshRenderer renderer in GetComponentsInChildren<MeshRenderer>()) {
+		foreach(Block block in GetComponentsInChildren<Block>()) {
+			MeshRenderer renderer = block.GetComponent<MeshRenderer>();
+
 			foreach(Material material in renderer.materials) {
 				material.SetFloat(effectMaterialPropertyName, effect);
 			}
@@ -60,7 +68,9 @@ public class Building : MonoBehaviour {
 	}
 
 	public void setFade(float fade) {
-		foreach(MeshRenderer renderer in GetComponentsInChildren<MeshRenderer>()) {
+		foreach(Block block in GetComponentsInChildren<Block>()) {
+			MeshRenderer renderer = block.GetComponent<MeshRenderer>();
+
 			foreach(Material material in renderer.materials) {
 				material.shader = previewShader;
 				material.SetFloat(fadeMaterialPropertyName, fade);

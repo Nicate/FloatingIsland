@@ -44,12 +44,16 @@ public class Manager : MonoBehaviour {
 	public Text storeText;
 	public Text siloText;
 
-	public Color activeToolColor;
-	public Color passiveToolColor;
+	public Color activeToolColor = Color.white;
+	public Color passiveToolColor = Color.white;
 
 	public float rayCastDistance = 500.0f;
 
-	public float toolBuildingFade = 0.0f;
+	public float selectedBuildingFade = 0.0f;
+	public Color selectedBuildingBuildableColor = Color.white;
+	public float selectedBuildingBuildableEffect = 0.0f;
+	public Color selectedBuildingUnbuildableColor = Color.white;
+	public float selectedBuildingUnbuildableEffect = 0.0f;
 	
 	private List<Factory> factories;
 	private List<Silo> silos;
@@ -160,10 +164,23 @@ public class Manager : MonoBehaviour {
 			}
 		}
 		else {
-			// TODO If hexagons are occupied, still attach but make red. And make green if not occupied. And color neighbours, etc. Color red if out of money.
-			if(hexagon != null && !hexagon.isFlooded(island, water) && !hexagon.isOccupied()) {
+			if(hexagon != null && !hexagon.isFlooded(island, water)) {
 				selectedBuilding.transform.SetParent(hexagon.transform, false);
 				selectedBuilding.gameObject.SetActive(true);
+				
+				bool unaffordableFactory = selectedTool == Tool.Factory && capital < factoryPrice;
+				bool unaffordableSilo = selectedTool == Tool.Silo && capital < siloPrice;
+				bool unaffordableStore = selectedTool == Tool.Store && capital < storePrice;
+				bool occupied = hexagon.isOccupied();
+
+				if(unaffordableFactory || unaffordableSilo || unaffordableStore || occupied) {
+					selectedBuilding.setColor(selectedBuildingUnbuildableColor);
+					selectedBuilding.setEffect(selectedBuildingUnbuildableEffect);
+				}
+				else {
+					selectedBuilding.setColor(selectedBuildingBuildableColor);
+					selectedBuilding.setEffect(selectedBuildingBuildableEffect);
+				}
 			}
 			else {
 				selectedBuilding.transform.SetParent(null, false);
@@ -282,7 +299,7 @@ public class Manager : MonoBehaviour {
 		selectedBuilding.name = "Selected " + prefab.name;
 
 		selectedBuilding.usePreviewShader();
-		selectedBuilding.setFade(toolBuildingFade);
+		selectedBuilding.setFade(selectedBuildingFade);
 
 		selectedBuilding.enableRadiators();
 
@@ -307,6 +324,8 @@ public class Manager : MonoBehaviour {
 		channel(price);
 
 		Instantiate(puffPrefab, selectedBuilding.transform.position, Quaternion.identity);
+
+		selectTool(Tool.None);
 
 		return building;
 	}
