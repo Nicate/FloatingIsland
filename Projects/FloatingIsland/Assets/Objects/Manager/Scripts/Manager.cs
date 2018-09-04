@@ -50,8 +50,7 @@ public class Manager : MonoBehaviour {
 	public float rayCastDistance = 500.0f;
 
 	public float toolBuildingFade = 0.0f;
-
-
+	
 	private List<Factory> factories;
 	private List<Silo> silos;
 	private List<Store> stores;
@@ -64,11 +63,7 @@ public class Manager : MonoBehaviour {
 	}
 
 	private Tool selectedTool;
-
-	private Factory toolFactory;
-	private Silo toolSilo;
-	private Store toolStore;
-
+	private Building selectedBuilding;
 
 	private float capital;
 
@@ -81,7 +76,8 @@ public class Manager : MonoBehaviour {
 		silos = new List<Silo>();
 		stores = new List<Store>();
 
-		selectedTool = Tool.Factory;
+		selectedTool = Tool.None;
+		selectedBuilding = null;
 
 		capital = 0.0f;
 		pollution = 0.0f;
@@ -89,7 +85,7 @@ public class Manager : MonoBehaviour {
 
 		funnel(startingCapital);
 
-		factoryText.color = activeToolColor;
+		factoryText.color = passiveToolColor;
 		siloText.color = passiveToolColor;
 		storeText.color = passiveToolColor;
 	}
@@ -97,7 +93,7 @@ public class Manager : MonoBehaviour {
 
 	private void Update() {
 		foreach(Factory factory in factories.ToArray()) {
-			if(factory.getHeight(island) + island.getLevel() < water.getLevel()) {
+			if(factory.isFlooded(island, water)) {
 				factory.evacuate();
 
 				factories.Remove(factory);
@@ -105,7 +101,7 @@ public class Manager : MonoBehaviour {
 		}
 
 		foreach(Silo silo in silos.ToArray()) {
-			if(silo.getHeight(island) + island.getLevel() < water.getLevel()) {
+			if(silo.isFlooded(island, water)) {
 				silo.evacuate();
 
 				silos.Remove(silo);
@@ -113,12 +109,13 @@ public class Manager : MonoBehaviour {
 		}
 
 		foreach(Store store in stores.ToArray()) {
-			if(store.getHeight(island) + island.getLevel() < water.getLevel()) {
+			if(store.isFlooded(island, water)) {
 				store.evacuate();
 
 				stores.Remove(store);
 			}
 		}
+
 
 		foreach(Factory factory in factories) {
 			factory.run(this);
@@ -131,6 +128,7 @@ public class Manager : MonoBehaviour {
 		foreach(Store store in stores) {
 			store.run(this);
 		}
+
 		
 		if(Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.Z)) {
 			selectTool(Tool.Factory);
@@ -145,123 +143,68 @@ public class Manager : MonoBehaviour {
 			selectTool(Tool.None);
 		}
 
+
+		Hexagon hexagon = null;
+		
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
 		RaycastHit hit;
-
 		if(Physics.Raycast(ray, out hit, rayCastDistance, LayerMask.GetMask("Hexagons"))) {
-			Transform transform = hit.collider.transform;
-				
-			if(transform.position.y > water.getLevel() && transform.childCount == 0) {
-				float angle = Random.Range(0.0f, 360.0f);
-				Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.up);
+			hexagon = hit.transform.GetComponent<Hexagon>();
+		}
 
-				if(selectedTool == Tool.Factory) {
-					if(toolFactory == null) {
-						toolFactory = Instantiate(factoryPrefab, transform.position, rotation, transform);
-
-						toolFactory.usePreviewShader();
-						toolFactory.setFade(toolBuildingFade);
-
-						toolFactory.enableRadiators();
-					}
-					else {
-						toolFactory.transform.SetParent(transform, false);
-					}
-				}
-				else if(selectedTool == Tool.Silo) {
-					if(toolSilo == null) {
-						toolSilo = Instantiate(siloPrefab, transform.position, rotation, transform);
-						
-						toolSilo.usePreviewShader();
-						toolSilo.setFade(toolBuildingFade);
-
-						toolSilo.enableRadiators();
-					}
-					else {
-						toolSilo.transform.SetParent(transform, false);
-					}
-				}
-				else if(selectedTool == Tool.Store) {
-					if(toolStore == null) {
-						toolStore = Instantiate(storePrefab, transform.position, rotation, transform);
-						
-						toolStore.usePreviewShader();
-						toolStore.setFade(toolBuildingFade);
-
-						toolStore.enableRadiators();
-					}
-					else {
-						toolStore.transform.SetParent(transform, false);
-					}
-				}
+		
+		if(selectedTool == Tool.None) {
+			if(hexagon != null && !hexagon.isFlooded(island, water) && hexagon.isOccupied()) {
+				// TODO Do the info stuff here.
 			}
 		}
+		else {
+			// TODO If hexagons are occupied, still attach but make red. And make green if not occupied. And color neighbours, etc. Color red if out of money.
+			if(hexagon != null && !hexagon.isFlooded(island, water) && !hexagon.isOccupied()) {
+				selectedBuilding.transform.SetParent(hexagon.transform, false);
+				selectedBuilding.gameObject.SetActive(true);
+			}
+			else {
+				selectedBuilding.transform.SetParent(null, false);
+				selectedBuilding.gameObject.SetActive(false);
+			}
+		}
+
 
 		bool impact = false;
 		float addedWeight = 0.0f;
 
-		if(Input.GetMouseButtonDown(0)) {
-			if(toolFactory != null && capital >= factoryPrice) {
-				Hexagon hexagon = hit.collider.transform.GetComponent<Hexagon>();
-
-				hexagon.enableBasePlate();
-
-				Factory factory = Instantiate(factoryPrefab, toolFactory.transform.position, toolFactory.transform.rotation, toolFactory.transform.parent);
-
-				hexagon.occupy(factory);
+		if(Input.GetMouseButtonDown(0) && selectedTool != Tool.None && hexagon != null && !hexagon.isFlooded(island, water) && !hexagon.isOccupied()) {
+			if(selectedTool == Tool.Factory && capital >= factoryPrice) {
+				Factory factory = build(factoryPrefab, hexagon, factoryPrice);
 
 				factories.Add(factory);
-
+				
+				impact = true;
 				addedWeight = factoryWeight;
-
-				channel(factoryPrice);
-
-				Instantiate(puffPrefab, toolFactory.transform.position, Quaternion.identity);
-
-				impact = true;
 			}
-			else if(toolSilo != null && capital >= siloPrice) {
-				Hexagon hexagon = hit.collider.transform.GetComponent<Hexagon>();
-
-				hexagon.enableBasePlate();
-
-				Silo silo = Instantiate(siloPrefab, toolSilo.transform.position, toolSilo.transform.rotation, toolSilo.transform.parent);
-
-				hexagon.occupy(silo);
-
+			else if(selectedTool == Tool.Silo && capital >= siloPrice) {
+				Silo silo = build(siloPrefab, hexagon, siloPrice);
+				
 				silos.Add(silo);
-
+				
+				impact = true;
 				addedWeight = siloWeight;
-
-				channel(siloPrice);
-
-				Instantiate(puffPrefab, toolSilo.transform.position, Quaternion.identity);
-
-				impact = true;
 			}
-			else if(toolStore != null && capital >= storePrice) {
-				Hexagon hexagon = hit.collider.transform.GetComponent<Hexagon>();
-
-				hexagon.enableBasePlate();
-
-				Store store = Instantiate(storePrefab, toolStore.transform.position, toolStore.transform.rotation, toolStore.transform.parent);
-
-				hexagon.occupy(store);
-
+			else if(selectedTool == Tool.Store && capital >= storePrice) {
+				Store store = build(storePrefab, hexagon, storePrice);
+				
 				stores.Add(store);
-
-				addedWeight = storeWeight;
-
-				channel(storePrice);
-
-				Instantiate(puffPrefab, toolStore.transform.position, Quaternion.identity);
-
+				
 				impact = true;
+				addedWeight = storeWeight;
 			}
 		}
 
+
 		water.setLevel(pollution * pollutionFactor);
+
 
 		float smog = Mathf.Clamp01(pollution * fogFactor);
 
@@ -271,6 +214,7 @@ public class Manager : MonoBehaviour {
 
 		RenderSettings.fogDensity = Mathf.Lerp(minimumDensity, maximumDensity, smog);
 		
+
 		if(impact) {
 			weight += addedWeight;
 
@@ -284,39 +228,87 @@ public class Manager : MonoBehaviour {
 		if(tool != Tool.Factory && selectedTool == Tool.Factory) {
 			factoryText.color = passiveToolColor;
 			
-			Destroy(toolFactory.gameObject);
-			toolFactory = null;
+			disableSelectedTool();
 		}
 
 		if(tool != Tool.Silo && selectedTool == Tool.Silo) {
 			siloText.color = passiveToolColor;
-
-			Destroy(toolSilo.gameObject);
-			toolSilo = null;
+			
+			disableSelectedTool();
 		}
 
 		if(tool != Tool.Store && selectedTool == Tool.Store) {
 			storeText.color = passiveToolColor;
-
-			Destroy(toolStore.gameObject);
-			toolStore = null;
+			
+			disableSelectedTool();
 		}
 
 		if(tool == Tool.Factory && selectedTool != Tool.Factory) {
 			selectedTool = Tool.Factory;
 
 			factoryText.color = activeToolColor;
+
+			enableSelectedTool(factoryPrefab);
 		}
-		else if(tool == Tool.Silo && selectedTool != Tool.Silo) {
+		
+		if(tool == Tool.Silo && selectedTool != Tool.Silo) {
 			selectedTool = Tool.Silo;
 			
 			siloText.color = activeToolColor;
+
+			enableSelectedTool(siloPrefab);
 		}
-		else if(tool == Tool.Store && selectedTool != Tool.Store) {
+
+		if(tool == Tool.Store && selectedTool != Tool.Store) {
 			selectedTool = Tool.Store;
 			
 			storeText.color = activeToolColor;
+
+			enableSelectedTool(storePrefab);
 		}
+
+		if(tool == Tool.None && selectedTool != Tool.None) {
+			selectedTool = Tool.None;
+		}
+	}
+
+	private void enableSelectedTool(Building prefab) {
+		Vector3 position = Vector3.zero;
+
+		float angle = Random.Range(0.0f, 360.0f);
+		Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.up);
+
+		selectedBuilding = Instantiate(prefab, position, rotation);
+		selectedBuilding.name = "Selected " + prefab.name;
+
+		selectedBuilding.usePreviewShader();
+		selectedBuilding.setFade(toolBuildingFade);
+
+		selectedBuilding.enableRadiators();
+
+		selectedBuilding.gameObject.SetActive(false);
+	}
+
+	private void disableSelectedTool() {
+		Destroy(selectedBuilding.gameObject);
+
+		selectedBuilding = null;
+	}
+
+
+	private T build<T>(T prefab, Hexagon hexagon, float price) where T : Building {
+		hexagon.enableBasePlate();
+
+		T building = Instantiate(prefab, selectedBuilding.transform.position, selectedBuilding.transform.rotation, hexagon.transform);
+		building.name = prefab.name + " " + hexagon.name.Split(' ')[1];
+
+		hexagon.occupy(building);
+
+		channel(price);
+
+		Instantiate(puffPrefab, selectedBuilding.transform.position, Quaternion.identity);
+
+		return building;
 	}
 
 

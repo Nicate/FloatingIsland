@@ -9,7 +9,7 @@ public class Factory : Building {
 	public float filthiness = 0.0f;
 
 
-	public void run(Manager manager) {
+	public override void run(Manager manager) {
 		// Find the closest silo with room available.
 		float distance = float.MaxValue;
 		Silo target = null;

@@ -38,4 +38,18 @@ public class Hexagon : MonoBehaviour {
 
 		material.SetFloat(baseMaterialPropertyName, 0.0f);
 	}
+
+
+	public float getHeight(Island island) {
+		return transform.position.y - island.transform.position.y;
+	}
+	
+	public float getLevel(Island island) {
+		return getHeight(island) + island.getLevel();
+	}
+
+
+	public bool isFlooded(Island island, Water water) {
+		return getLevel(island) < water.getLevel();
+	}
 }

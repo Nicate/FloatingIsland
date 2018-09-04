@@ -9,7 +9,7 @@ public class Store : Building {
 	public float price = 0.0f;
 
 
-	public void run(Manager manager) {
+	public override void run(Manager manager) {
 		// Find the closest silo with product available.
 		float distance = float.MaxValue;
 		Silo target = null;

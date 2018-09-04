@@ -13,11 +13,6 @@ public class Silo : Building {
 	}
 
 
-	public void run(Manager manager) {
-
-	}
-
-
 	public float getStorage() {
 		return storage;
 	}

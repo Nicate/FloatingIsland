@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Building : MonoBehaviour {
 	[Header("Building")]
@@ -108,5 +107,19 @@ public class Building : MonoBehaviour {
 
 	public float getHeight(Island island) {
 		return transform.position.y - island.transform.position.y;
+	}
+	
+	public float getLevel(Island island) {
+		return getHeight(island) + island.getLevel();
+	}
+
+
+	public bool isFlooded(Island island, Water water) {
+		return getLevel(island) < water.getLevel();
+	}
+
+
+	public virtual void run(Manager manager) {
+		// Default implementation is to do nothing.
 	}
 }
