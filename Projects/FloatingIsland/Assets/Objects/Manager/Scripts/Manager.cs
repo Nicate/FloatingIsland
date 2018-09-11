@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class Manager : MonoBehaviour {
 	public Factory factoryPrefab;
-	public Silo siloPrefab;
 	public Store storePrefab;
+	public Silo siloPrefab;
 
 	public Puff puffPrefab;
 	
@@ -16,8 +16,8 @@ public class Manager : MonoBehaviour {
 	public float startingCapital = 0.0f;
 
 	public float factoryPrice = 0.0f;
-	public float siloPrice = 0.0f;
 	public float storePrice = 0.0f;
+	public float siloPrice = 0.0f;
 	
 	public float maximumHeight = 0.0f;
 	public float maximumSlope = 0.0f;
@@ -26,8 +26,8 @@ public class Manager : MonoBehaviour {
 	public float slopePenalty = 1.0f;
 
 	public float factoryWeight = 0.0f;
-	public float siloWeight = 0.0f;
 	public float storeWeight = 0.0f;
+	public float siloWeight = 0.0f;
 
 	public float weightFactor = 1.0f;
 	public float pollutionFactor = 1.0f;
@@ -56,8 +56,8 @@ public class Manager : MonoBehaviour {
 	public float selectedBuildingUnbuildableEffect = 0.0f;
 	
 	private List<Factory> factories;
-	private List<Silo> silos;
 	private List<Store> stores;
+	private List<Silo> silos;
 
 	private enum Tool {
 		Factory,
@@ -77,8 +77,8 @@ public class Manager : MonoBehaviour {
 
 	private void Start() {
 		factories = new List<Factory>();
-		silos = new List<Silo>();
 		stores = new List<Store>();
+		silos = new List<Silo>();
 
 		selectedTool = Tool.None;
 		selectedBuilding = null;
@@ -90,8 +90,8 @@ public class Manager : MonoBehaviour {
 		funnel(startingCapital);
 
 		factoryText.color = passiveToolColor;
-		siloText.color = passiveToolColor;
 		storeText.color = passiveToolColor;
+		siloText.color = passiveToolColor;
 	}
 	
 
@@ -104,14 +104,6 @@ public class Manager : MonoBehaviour {
 			}
 		}
 
-		foreach(Silo silo in silos.ToArray()) {
-			if(silo.isFlooded(island, water)) {
-				silo.evacuate();
-
-				silos.Remove(silo);
-			}
-		}
-
 		foreach(Store store in stores.ToArray()) {
 			if(store.isFlooded(island, water)) {
 				store.evacuate();
@@ -120,28 +112,36 @@ public class Manager : MonoBehaviour {
 			}
 		}
 
+		foreach(Silo silo in silos.ToArray()) {
+			if(silo.isFlooded(island, water)) {
+				silo.evacuate();
+
+				silos.Remove(silo);
+			}
+		}
+
 
 		foreach(Factory factory in factories) {
 			factory.run(this);
 		}
 		
-		foreach(Silo silo in silos) {
-			silo.run(this);
-		}
-		
 		foreach(Store store in stores) {
 			store.run(this);
+		}
+		
+		foreach(Silo silo in silos) {
+			silo.run(this);
 		}
 
 		
 		if(Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.Z)) {
 			selectTool(Tool.Factory);
 		}
-		else if(Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.C)) {
-			selectTool(Tool.Silo);
-		}
 		else if(Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.X)) {
 			selectTool(Tool.Store);
+		}
+		else if(Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.C)) {
+			selectTool(Tool.Silo);
 		}
 		else if(Input.GetKeyDown(KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.V)) {
 			selectTool(Tool.None);
@@ -169,8 +169,8 @@ public class Manager : MonoBehaviour {
 				selectedBuilding.gameObject.SetActive(true);
 				
 				bool unaffordableFactory = selectedTool == Tool.Factory && capital < factoryPrice;
-				bool unaffordableSilo = selectedTool == Tool.Silo && capital < siloPrice;
 				bool unaffordableStore = selectedTool == Tool.Store && capital < storePrice;
+				bool unaffordableSilo = selectedTool == Tool.Silo && capital < siloPrice;
 				bool occupied = hexagon.isOccupied();
 
 				if(unaffordableFactory || unaffordableSilo || unaffordableStore || occupied) {
@@ -201,14 +201,6 @@ public class Manager : MonoBehaviour {
 				impact = true;
 				addedWeight = factoryWeight;
 			}
-			else if(selectedTool == Tool.Silo && capital >= siloPrice) {
-				Silo silo = build(siloPrefab, hexagon, siloPrice);
-				
-				silos.Add(silo);
-				
-				impact = true;
-				addedWeight = siloWeight;
-			}
 			else if(selectedTool == Tool.Store && capital >= storePrice) {
 				Store store = build(storePrefab, hexagon, storePrice);
 				
@@ -216,6 +208,14 @@ public class Manager : MonoBehaviour {
 				
 				impact = true;
 				addedWeight = storeWeight;
+			}
+			else if(selectedTool == Tool.Silo && capital >= siloPrice) {
+				Silo silo = build(siloPrefab, hexagon, siloPrice);
+				
+				silos.Add(silo);
+				
+				impact = true;
+				addedWeight = siloWeight;
 			}
 		}
 
@@ -248,14 +248,14 @@ public class Manager : MonoBehaviour {
 			disableSelectedTool();
 		}
 
-		if(tool != Tool.Silo && selectedTool == Tool.Silo) {
-			siloText.color = passiveToolColor;
+		if(tool != Tool.Store && selectedTool == Tool.Store) {
+			storeText.color = passiveToolColor;
 			
 			disableSelectedTool();
 		}
 
-		if(tool != Tool.Store && selectedTool == Tool.Store) {
-			storeText.color = passiveToolColor;
+		if(tool != Tool.Silo && selectedTool == Tool.Silo) {
+			siloText.color = passiveToolColor;
 			
 			disableSelectedTool();
 		}
@@ -267,14 +267,6 @@ public class Manager : MonoBehaviour {
 
 			enableSelectedTool(factoryPrefab);
 		}
-		
-		if(tool == Tool.Silo && selectedTool != Tool.Silo) {
-			selectedTool = Tool.Silo;
-			
-			siloText.color = activeToolColor;
-
-			enableSelectedTool(siloPrefab);
-		}
 
 		if(tool == Tool.Store && selectedTool != Tool.Store) {
 			selectedTool = Tool.Store;
@@ -282,6 +274,14 @@ public class Manager : MonoBehaviour {
 			storeText.color = activeToolColor;
 
 			enableSelectedTool(storePrefab);
+		}
+		
+		if(tool == Tool.Silo && selectedTool != Tool.Silo) {
+			selectedTool = Tool.Silo;
+			
+			siloText.color = activeToolColor;
+
+			enableSelectedTool(siloPrefab);
 		}
 
 		if(tool == Tool.None && selectedTool != Tool.None) {
@@ -335,12 +335,12 @@ public class Manager : MonoBehaviour {
 		return factories.ToArray();
 	}
 	
-	public Silo[] getSilos() {
-		return silos.ToArray();
-	}
-	
 	public Store[] getStores() {
 		return stores.ToArray();
+	}
+	
+	public Silo[] getSilos() {
+		return silos.ToArray();
 	}
 
 

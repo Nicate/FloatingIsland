@@ -145,7 +145,7 @@ GameObject:
   - component: {fileID: 4089737727950726}
   - component: {fileID: 33167539917123334}
   - component: {fileID: 23408255164585624}
-  - component: {fileID: 114884079680154356}
+  - component: {fileID: 114321310727185064}
   m_Layer: 0
   m_Name: Silo2
   m_TagString: Untagged
@@ -199,7 +199,7 @@ GameObject:
   - component: {fileID: 4561957967363872}
   - component: {fileID: 33951520769433792}
   - component: {fileID: 23442513438154176}
-  - component: {fileID: 114389891791716818}
+  - component: {fileID: 114421131810380818}
   m_Layer: 0
   m_Name: Silo3
   m_TagString: Untagged
@@ -217,7 +217,7 @@ GameObject:
   - component: {fileID: 4893404994952128}
   - component: {fileID: 33556766412796494}
   - component: {fileID: 23172374683646848}
-  - component: {fileID: 114234401168633090}
+  - component: {fileID: 114962119317150490}
   m_Layer: 0
   m_Name: Silo1
   m_TagString: Untagged
@@ -964,23 +964,13 @@ MonoBehaviour:
   effectMaterialPropertyName: Effect
   fadeMaterialPropertyName: Fade
   capacity: 1000
+  towers: 3
 --- !u!114 &114135521259842060
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1910738632880628}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4aa2c639d4f0fe64b838e7833cf60aac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114234401168633090
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1905036155832806}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4aa2c639d4f0fe64b838e7833cf60aac, type: 3}
@@ -997,6 +987,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aa2c639d4f0fe64b838e7833cf60aac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114321310727185064
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1492132550449390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d220e9ae24095604485ea9c3f7cd7299, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minimum: 0
+  maximum: 1
+  effectMultiplier: 0.8
+  color: {r: 0.85882354, g: 0.3647059, b: 0, a: 1}
+  materialIndex: 0
+  colorMaterialPropertyName: AlbedoColor
+  effectMaterialPropertyName: Effect
 --- !u!114 &114326235864677338
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1019,7 +1027,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aa2c639d4f0fe64b838e7833cf60aac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114389891791716818
+--- !u!114 &114421131810380818
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1027,9 +1035,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1868799436253038}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4aa2c639d4f0fe64b838e7833cf60aac, type: 3}
+  m_Script: {fileID: 11500000, guid: d220e9ae24095604485ea9c3f7cd7299, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minimum: 0
+  maximum: 1
+  effectMultiplier: 0.8
+  color: {r: 0.85882354, g: 0.3647059, b: 0, a: 1}
+  materialIndex: 0
+  colorMaterialPropertyName: AlbedoColor
+  effectMaterialPropertyName: Effect
 --- !u!114 &114700501515044946
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1074,14 +1089,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2a06fb99b490194d98d31ce00d7a398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114884079680154356
+--- !u!114 &114962119317150490
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1492132550449390}
+  m_GameObject: {fileID: 1905036155832806}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4aa2c639d4f0fe64b838e7833cf60aac, type: 3}
+  m_Script: {fileID: 11500000, guid: d220e9ae24095604485ea9c3f7cd7299, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minimum: 0
+  maximum: 1
+  effectMultiplier: 0.8
+  color: {r: 0.85882354, g: 0.3647059, b: 0, a: 1}
+  materialIndex: 0
+  colorMaterialPropertyName: AlbedoColor
+  effectMaterialPropertyName: Effect

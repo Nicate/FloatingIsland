@@ -4,6 +4,9 @@ public class Silo : Building {
 	[Header("Silo")]
 	public float capacity = 0.0f;
 
+	[Header("Towers")]
+	public int towers = 0;
+
 
 	private float storage;
 
@@ -13,12 +16,34 @@ public class Silo : Building {
 	}
 
 
+	public override void run(Manager manager) {
+		int index = 0;
+
+		float rate = storage / capacity;
+
+		foreach(Tower tower in GetComponentsInChildren<Tower>()) {
+			float minimum = index / (float) towers;
+			float maximum = (index + 1) / (float) towers;
+
+			float fill = Mathf.Clamp01((rate - minimum) / (maximum - minimum));
+
+			tower.setFill(fill);
+
+			index += 1;
+
+			if(index == towers) {
+				break;
+			}
+		}
+	}
+
+
 	public float getStorage() {
 		return storage;
 	}
 
 	private void setStorage(float storage) {
-		this.storage = Mathf.Clamp(storage, 0, capacity);
+		this.storage = Mathf.Clamp(storage, 0.0f, capacity);
 	}
 
 
