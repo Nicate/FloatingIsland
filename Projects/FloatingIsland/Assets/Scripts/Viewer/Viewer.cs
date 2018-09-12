@@ -107,12 +107,15 @@ public class Viewer : MonoBehaviour {
 
 		zoom -= Input.GetAxis(zoomAxis) * zoomSensitivity;
 		zoom = Mathf.Clamp(zoom, minimumZoom, maximumZoom);
+
+		// These are calculated independent of other components.
+		updateRotation();
+		updateZoom();
 	}
 	
 	private void LateUpdate() {
+		// This is calculated dependent on another component.
 		updatePosition();
-		updateRotation();
-		updateZoom();
 	}
 
 
