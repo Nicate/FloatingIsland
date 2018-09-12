@@ -40,13 +40,6 @@ public class Manager : MonoBehaviour {
 
 	public Text capitalText;
 
-	public Text factoryText;
-	public Text storeText;
-	public Text siloText;
-
-	public Color activeToolColor = Color.white;
-	public Color passiveToolColor = Color.white;
-
 	public float rayCastDistance = 500.0f;
 
 	public float selectedBuildingFade = 0.0f;
@@ -55,6 +48,7 @@ public class Manager : MonoBehaviour {
 	public Color selectedBuildingUnbuildableColor = Color.white;
 	public float selectedBuildingUnbuildableEffect = 0.0f;
 	
+
 	private List<Factory> factories;
 	private List<Store> stores;
 	private List<Silo> silos;
@@ -88,10 +82,6 @@ public class Manager : MonoBehaviour {
 		weight = 0.0f;
 
 		funnel(startingCapital);
-
-		factoryText.color = passiveToolColor;
-		storeText.color = passiveToolColor;
-		siloText.color = passiveToolColor;
 	}
 	
 
@@ -243,43 +233,31 @@ public class Manager : MonoBehaviour {
 
 	private void selectTool(Tool tool) {
 		if(tool != Tool.Factory && selectedTool == Tool.Factory) {
-			factoryText.color = passiveToolColor;
-			
 			disableSelectedTool();
 		}
 
 		if(tool != Tool.Store && selectedTool == Tool.Store) {
-			storeText.color = passiveToolColor;
-			
 			disableSelectedTool();
 		}
 
 		if(tool != Tool.Silo && selectedTool == Tool.Silo) {
-			siloText.color = passiveToolColor;
-			
 			disableSelectedTool();
 		}
 
 		if(tool == Tool.Factory && selectedTool != Tool.Factory) {
 			selectedTool = Tool.Factory;
 
-			factoryText.color = activeToolColor;
-
 			enableSelectedTool(factoryPrefab);
 		}
 
 		if(tool == Tool.Store && selectedTool != Tool.Store) {
 			selectedTool = Tool.Store;
-			
-			storeText.color = activeToolColor;
 
 			enableSelectedTool(storePrefab);
 		}
 		
 		if(tool == Tool.Silo && selectedTool != Tool.Silo) {
 			selectedTool = Tool.Silo;
-			
-			siloText.color = activeToolColor;
 
 			enableSelectedTool(siloPrefab);
 		}
