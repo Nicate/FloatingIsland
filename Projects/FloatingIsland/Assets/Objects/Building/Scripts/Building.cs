@@ -109,6 +109,42 @@ public class Building : MonoBehaviour {
 	}
 
 
+	public void enableInformation() {
+		foreach(Information information in GetComponentsInChildren<Information>(true)) {
+			information.gameObject.SetActive(true);
+		}
+	}
+	
+	public void disableInformation() {
+		foreach(Information information in GetComponentsInChildren<Information>(true)) {
+			information.gameObject.SetActive(false);
+		}
+	}
+	
+
+	public void setInformation(string information) {
+		foreach(Information component in GetComponentsInChildren<Information>(true)) {
+			component.setInformation(information);
+		}
+	}
+
+
+	public void setPrice(float price) {
+		string value = "$" + price.ToString("n0");
+
+		setInformation(value);
+	}
+
+	public void setRate(float rate) {
+		// Round up to avoid float imprecisions preventing a 100% value.
+		float percentage = Mathf.Ceil(100.0f * rate);
+
+		string value = percentage.ToString("n0") + "%";
+
+		setInformation(value);
+	}
+
+
 	public virtual void evacuate() {
 		disableParticleSystems();
 		disableRadiators();

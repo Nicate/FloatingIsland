@@ -23,7 +23,9 @@ public class Store : Building {
 			}
 		}
 
-		float consumed = Mathf.Lerp(consumption, 0.0f, distance / range) * Time.deltaTime;
+		float capacity = consumption * Time.deltaTime;
+
+		float consumed = Mathf.Lerp(capacity, 0.0f, distance / range);
 
 		// Suck 'er dry.
 		if(target != null && consumed > 0.0f) {
@@ -31,6 +33,8 @@ public class Store : Building {
 			float sold = target.withdraw(consumed);
 			
 			manager.funnel(sold * price);
+
+			setRate(sold / capacity);
 
 			// We were able to consume.
 			enableParticleSystems();

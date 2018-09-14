@@ -23,7 +23,9 @@ public class Factory : Building {
 			}
 		}
 
-		float produced = Mathf.Lerp(production, 0.0f, distance / range) * Time.deltaTime;
+		float capacity = production * Time.deltaTime;
+
+		float produced = Mathf.Lerp(capacity, 0.0f, distance / range);
 
 		// Fill 'er up.
 		if(target != null && produced > 0.0f) {
@@ -31,6 +33,8 @@ public class Factory : Building {
 			float deposited = target.deposit(produced);
 
 			manager.pollute(deposited * filthiness);
+
+			setRate(deposited / capacity);
 
 			// We were able to produce.
 			enableParticleSystems();

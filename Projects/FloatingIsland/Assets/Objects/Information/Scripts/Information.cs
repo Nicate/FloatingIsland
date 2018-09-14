@@ -33,6 +33,6 @@ public class Information : MonoBehaviour {
 
 
 	private void updateText() {
-		GetComponent<TextMesh>().text = information;
+		GetComponentInChildren<TextMesh>(true).text = information;
 	}
 }

@@ -35,6 +35,8 @@ public class Silo : Building {
 				break;
 			}
 		}
+
+		setRate(rate);
 	}
 
 
