@@ -62,6 +62,7 @@ public class Manager : MonoBehaviour {
 
 	private Tool selectedTool;
 	private Building selectedBuilding;
+	private Building inspectedBuilding;
 
 	private float capital;
 
@@ -76,6 +77,7 @@ public class Manager : MonoBehaviour {
 
 		selectedTool = Tool.None;
 		selectedBuilding = null;
+		inspectedBuilding = null;
 
 		capital = 0.0f;
 		pollution = 0.0f;
@@ -149,8 +151,16 @@ public class Manager : MonoBehaviour {
 
 		
 		if(selectedTool == Tool.None) {
+			if(inspectedBuilding != null) {
+				inspectedBuilding.disableRadiators();
+				inspectedBuilding.disableInformation();
+			}
+
 			if(hexagon != null && !hexagon.isFlooded(island, water) && hexagon.isOccupied()) {
-				// TODO Do the info stuff here.
+				inspectedBuilding = hexagon.getOccupant();
+				
+				inspectedBuilding.enableRadiators();
+				inspectedBuilding.enableInformation();
 			}
 		}
 		else {
@@ -296,6 +306,8 @@ public class Manager : MonoBehaviour {
 
 		T building = Instantiate(prefab, selectedBuilding.transform.position, selectedBuilding.transform.rotation, hexagon.transform);
 		building.name = prefab.name + " " + hexagon.name.Split(' ')[1];
+
+		building.setRate(0.0f);
 
 		hexagon.occupy(building);
 
