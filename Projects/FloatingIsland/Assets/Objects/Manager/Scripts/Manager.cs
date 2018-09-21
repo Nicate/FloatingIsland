@@ -167,6 +167,17 @@ public class Manager : MonoBehaviour {
 			if(hexagon != null && !hexagon.isFlooded(island, water)) {
 				selectedBuilding.transform.SetParent(hexagon.transform, false);
 				selectedBuilding.gameObject.SetActive(true);
+
+				// TODO Replace with a calculation based on the location.
+				if(selectedTool == Tool.Factory) {
+					selectedBuilding.setPrice(40000.0f);
+				}
+				else if(selectedTool == Tool.Store) {
+					selectedBuilding.setPrice(31000.0f);
+				}
+				else if(selectedTool == Tool.Silo) {
+					selectedBuilding.setPrice(22000.0f);
+				}
 				
 				bool unaffordableFactory = selectedTool == Tool.Factory && capital < factoryPrice;
 				bool unaffordableStore = selectedTool == Tool.Store && capital < storePrice;
@@ -290,6 +301,7 @@ public class Manager : MonoBehaviour {
 		selectedBuilding.setFade(selectedBuildingFade);
 
 		selectedBuilding.enableRadiators();
+		selectedBuilding.enableInformation();
 
 		selectedBuilding.gameObject.SetActive(false);
 	}
