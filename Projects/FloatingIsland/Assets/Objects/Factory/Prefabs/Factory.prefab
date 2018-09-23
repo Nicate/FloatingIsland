@@ -954,6 +954,8 @@ MonoBehaviour:
   colorMaterialPropertyName: AlbedoColor
   effectMaterialPropertyName: Effect
   fadeMaterialPropertyName: Fade
+  decayMaterialPropertyName: Decay
+  decayDuration: 4
   production: 104.767
   range: 3.1
   filthiness: 0.01

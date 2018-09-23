@@ -1458,6 +1458,8 @@ MonoBehaviour:
   colorMaterialPropertyName: AlbedoColor
   effectMaterialPropertyName: Effect
   fadeMaterialPropertyName: Fade
+  decayMaterialPropertyName: Decay
+  decayDuration: 4
   consumption: 62.894
   range: 4.1
   price: 22

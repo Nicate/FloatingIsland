@@ -11,7 +11,9 @@ public class Silo : Building {
 	private float storage;
 
 	
-	private void Start() {
+	protected override void Start() {
+		base.Start();
+
 		storage = 0.0f;
 	}
 

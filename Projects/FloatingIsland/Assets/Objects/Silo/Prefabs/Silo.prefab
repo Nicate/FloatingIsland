@@ -1080,6 +1080,8 @@ MonoBehaviour:
   colorMaterialPropertyName: AlbedoColor
   effectMaterialPropertyName: Effect
   fadeMaterialPropertyName: Fade
+  decayMaterialPropertyName: Decay
+  decayDuration: 4
   capacity: 1000
   towers: 3
 --- !u!114 &114135521259842060

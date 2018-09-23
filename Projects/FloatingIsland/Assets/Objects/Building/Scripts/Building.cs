@@ -11,6 +11,26 @@ public class Building : MonoBehaviour {
 	public string colorMaterialPropertyName;
 	public string effectMaterialPropertyName;
 	public string fadeMaterialPropertyName;
+	public string decayMaterialPropertyName;
+
+	public float decayDuration;
+	
+	private float decayStartTime;
+	
+	
+	protected virtual void Start() {
+		// By initializing the start time really high, the decay will remain zero until we evacuate.
+		decayStartTime = float.MaxValue;
+	}
+
+	protected virtual void Update() {
+		float decayTime = Time.time - decayStartTime;
+		float decay = decayTime / decayDuration;
+
+		if(decay >= 0.0f && decay <= 1.0f) {
+			setDecay(decay);
+		}
+	}
 
 
 	public void useBuildingShader() {
@@ -21,7 +41,7 @@ public class Building : MonoBehaviour {
 				material.shader = buildingShader;
 
 				// Changing the render queue doesn't actually work, as the shader reassignment will cause it to
-				// be overwritten later this frame. The render queue is hard-coded in the preview shader for now.
+				// be overwritten later this frame. The render queue is hard-coded in the building shader for now.
 				material.renderQueue = buildingShaderRenderQueue;
 			}
 
@@ -37,7 +57,7 @@ public class Building : MonoBehaviour {
 				material.shader = previewShader;
 
 				// Changing the render queue doesn't actually work, as the shader reassignment will cause it to
-				// be overwritten later this frame. The render queue is hard-coded in the building shader for now.
+				// be overwritten later this frame. The render queue is hard-coded in the preview shader for now.
 				material.renderQueue = previewShaderRenderQueue;
 			}
 
@@ -72,8 +92,17 @@ public class Building : MonoBehaviour {
 			MeshRenderer renderer = block.GetComponent<MeshRenderer>();
 
 			foreach(Material material in renderer.materials) {
-				material.shader = previewShader;
 				material.SetFloat(fadeMaterialPropertyName, fade);
+			}
+		}
+	}
+
+	public void setDecay(float decay) {
+		foreach(Block block in GetComponentsInChildren<Block>()) {
+			MeshRenderer renderer = block.GetComponent<MeshRenderer>();
+
+			foreach(Material material in renderer.materials) {
+				material.SetFloat(decayMaterialPropertyName, decay);
 			}
 		}
 	}
@@ -148,6 +177,10 @@ public class Building : MonoBehaviour {
 	public virtual void evacuate() {
 		disableParticleSystems();
 		disableRadiators();
+		disableInformation();
+
+		// Start the decay.
+		decayStartTime = Time.time;
 	}
 
 
