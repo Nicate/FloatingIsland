@@ -1,0 +1,80 @@
+fileFormatVersion: 2
+guid: 316d3cd555bf5394cb70641fdaf75775
+ScriptedImporter:
+  fileIDToRecycleName:
+    100000: Fluff/Fluff
+    400000: Fluff/Fluff/Transform
+    2100000: mat.Fluff
+    2300000: Fluff/Fluff/MeshRenderer
+    2800000: Fluff_Base Color
+    2800002: Fluff_Normal
+    2800004: Fluff_Metallic
+    2800006: Fluff_Height
+    3300000: Fluff/Fluff/MeshFilter
+    11400000: sbsar
+    11400002: graph0
+    13500000: Fluff/Fluff/SphereCollider
+    100100000: Fluff
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 232528478, guid: 43a8bbf65be290d44ba52b94476242b9, type: 3}
+  mGraphInstanceData:
+  - graphLabel: Fluff
+    graphDescIndex: 0
+    generateAllOutputs: 0
+    generateMipMaps: 1
+    preset: " <sbspreset pkgurl=\"pkg://Fluff\" label=\"\" >\n  <presetinput identifier=\"$outputsize\"
+      uid=\"108707762\" type=\"8\" value=\"10,10\" />\n </sbspreset>\n"
+    shaderName: Standard
+    outputNames: Base Color,Normal,Metallic,Height
+    texturePackingList:
+    - outputName: Base Color
+      alphaSource: Base Color
+    - outputName: Normal
+      alphaSource: Normal
+    - outputName: Roughness
+      alphaSource: Roughness
+    - outputName: Metallic
+      alphaSource: Smoothness
+    - outputName: Height
+      alphaSource: Height
+    colorSpaceList:
+    - outputName: Base Color
+      bLinear: 0
+    - outputName: Normal
+      bLinear: 1
+    - outputName: Roughness
+      bLinear: 1
+    - outputName: Metallic
+      bLinear: 1
+    - outputName: Height
+      bLinear: 1
+    inputTextureMap: []
+    targetSettingList:
+    - label: Default
+      bOverride: 0
+      bLockRatio: 1
+      bHighQuality: 1
+      textureWidth: 1024
+      textureHeight: 1024
+      textureFormat: 0
+      loadBehavior: 0
+    - label: Standalone
+      bOverride: 0
+      bLockRatio: 1
+      bHighQuality: 0
+      textureWidth: 256
+      textureHeight: 256
+      textureFormat: 0
+      loadBehavior: 0
+    - label: iPhone
+      bOverride: 0
+      bLockRatio: 1
+      bHighQuality: 0
+      textureWidth: 256
+      textureHeight: 256
+      textureFormat: 0
+      loadBehavior: 0
+    material: {fileID: 2100000, guid: 316d3cd555bf5394cb70641fdaf75775, type: 3}
