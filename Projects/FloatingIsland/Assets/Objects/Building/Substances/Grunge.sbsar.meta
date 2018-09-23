@@ -1,35 +1,35 @@
 fileFormatVersion: 2
-guid: 49b369e42bb2206409ce6a3f938ef129
+guid: 5705a6f025dad1c459cf373b19f6eacf
 ScriptedImporter:
   fileIDToRecycleName:
-    100000: Brick/Brick
-    400000: Brick/Brick/Transform
-    2100000: mat.Brick
-    2300000: Brick/Brick/MeshRenderer
-    2800000: Brick_Base Color
-    2800002: Brick_Normal
-    2800004: Brick_Metallic
-    2800006: Brick_Height
-    2800016: Brick_Roughness
-    3300000: Brick/Brick/MeshFilter
+    100000: Grunge/Grunge
+    400000: Grunge/Grunge/Transform
+    2100000: mat.Grunge
+    2300000: Grunge/Grunge/MeshRenderer
+    2800000: Grunge_Base Color
+    2800002: Grunge_Normal
+    2800004: Grunge_Metallic
+    2800006: Grunge_Height
+    2800008: Grunge_Roughness
+    3300000: Grunge/Grunge/MeshFilter
     11400000: sbsar
     11400002: graph0
-    13500000: Brick/Brick/SphereCollider
-    100100000: Brick
+    13500000: Grunge/Grunge/SphereCollider
+    100100000: Grunge
   externalObjects: {}
   userData: 
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 232528478, guid: 43a8bbf65be290d44ba52b94476242b9, type: 3}
   mGraphInstanceData:
-  - graphLabel: Brick
+  - graphLabel: Grunge
     graphDescIndex: 0
     generateAllOutputs: 1
     generateMipMaps: 1
-    preset: " <sbspreset pkgurl=\"pkg://Brick\" label=\"\" >\n  <presetinput identifier=\"$outputsize\"
-      uid=\"1439099698\" type=\"8\" value=\"10,10\" />\n </sbspreset>\n"
+    preset: " <sbspreset pkgurl=\"pkg://Grunge\" label=\"\" >\n  <presetinput identifier=\"$outputsize\"
+      uid=\"532272292\" type=\"8\" value=\"10,10\" />\n </sbspreset>\n"
     shaderName: Standard
-    outputNames: 
+    outputNames: Base Color,Normal,Metallic,Height
     texturePackingList:
     - outputName: Base Color
       alphaSource: Base Color
@@ -78,4 +78,4 @@ ScriptedImporter:
       textureHeight: 256
       textureFormat: 0
       loadBehavior: 0
-    material: {fileID: 2100000, guid: 49b369e42bb2206409ce6a3f938ef129, type: 3}
+    material: {fileID: 2100000, guid: 5705a6f025dad1c459cf373b19f6eacf, type: 3}

@@ -18,16 +18,36 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - AlbedoTexture:
+    - Building_AlbedoTexture:
         m_Texture: {fileID: 2800000, guid: 49b369e42bb2206409ce6a3f938ef129, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - NormalTexture:
+    - Building_HeightTexture:
+        m_Texture: {fileID: 2800006, guid: 49b369e42bb2206409ce6a3f938ef129, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Building_NormalTexture:
         m_Texture: {fileID: 2800002, guid: 49b369e42bb2206409ce6a3f938ef129, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - RoughnessTexture:
+    - Building_RoughnessTexture:
         m_Texture: {fileID: 2800016, guid: 49b369e42bb2206409ce6a3f938ef129, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Grunge_AlbedoTexture:
+        m_Texture: {fileID: 2800000, guid: 5705a6f025dad1c459cf373b19f6eacf, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Grunge_HeightTexture:
+        m_Texture: {fileID: 2800006, guid: 5705a6f025dad1c459cf373b19f6eacf, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Grunge_NormalTexture:
+        m_Texture: {fileID: 2800002, guid: 5705a6f025dad1c459cf373b19f6eacf, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Grunge_RoughnessTexture:
+        m_Texture: {fileID: 2800008, guid: 5705a6f025dad1c459cf373b19f6eacf, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -67,12 +87,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Building_Metal: 0
+    - Building_TextureScale: 8
+    - Decay: 0
+    - Depth: 0.4
     - Effect: 0
     - Fade: 0
-    - Metal: 0
-    - Metallic: 0
-    - Strength: 0
-    - TextureScale: 8
+    - Grunge: 0.7
+    - Grunge_Metal: 0
+    - Grunge_TextureScale: 4
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
@@ -90,6 +113,6 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - AlbedoColor: {r: 1, g: 0, b: 0, a: 1}
+    - AlbedoColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

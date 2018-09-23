@@ -18,16 +18,36 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - AlbedoTexture:
+    - Building_AlbedoTexture:
         m_Texture: {fileID: 2800000, guid: c722737b2085c5b4780ead6cb5bb6780, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - NormalTexture:
+    - Building_HeightTexture:
+        m_Texture: {fileID: 2800006, guid: c722737b2085c5b4780ead6cb5bb6780, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Building_NormalTexture:
         m_Texture: {fileID: 2800002, guid: c722737b2085c5b4780ead6cb5bb6780, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - RoughnessTexture:
+    - Building_RoughnessTexture:
         m_Texture: {fileID: 2800008, guid: c722737b2085c5b4780ead6cb5bb6780, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Grunge_AlbedoTexture:
+        m_Texture: {fileID: 2800000, guid: 18cf982a0a4b2c04c9012990b44e857c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Grunge_HeightTexture:
+        m_Texture: {fileID: 2800006, guid: 18cf982a0a4b2c04c9012990b44e857c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Grunge_NormalTexture:
+        m_Texture: {fileID: 2800002, guid: 18cf982a0a4b2c04c9012990b44e857c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Grunge_RoughnessTexture:
+        m_Texture: {fileID: 2800008, guid: 18cf982a0a4b2c04c9012990b44e857c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -67,10 +87,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Building_Metal: 0
+    - Building_TextureScale: 16
+    - Decay: 0
+    - Depth: 0.3
     - Effect: 0
     - Fade: 0
-    - Metal: 0
-    - TextureScale: 16
+    - Grunge: 0.69
+    - Grunge_Metal: 0
+    - Grunge_TextureScale: 0.5
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
