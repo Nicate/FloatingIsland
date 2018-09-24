@@ -51,16 +51,65 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85b097dc035f4f843b2d73ca68999df4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  factoryPrefab: {fileID: 0}
-  siloPrefab: {fileID: 0}
-  storePrefab: {fileID: 0}
-  basePlatePrefab: {fileID: 0}
+  factoryPrefab: {fileID: 114679736738526288, guid: 5164ea577654efc48964913db3b1ada3,
+    type: 2}
+  storePrefab: {fileID: 114271645735392266, guid: 8276453e82c1d944db7bcdba632f97d9,
+    type: 2}
+  siloPrefab: {fileID: 114120604086154304, guid: 96a5427263a39be4faf7c1c4a1dc29ae,
+    type: 2}
+  puffPrefab: {fileID: 114403795316466932, guid: 871dd694c02eb0c4bb2eaf63714b8f01,
+    type: 2}
   water: {fileID: 0}
+  island: {fileID: 0}
   startingCapital: 100000
   factoryPrice: 40000
-  siloPrice: 22000
   storePrice: 31000
+  siloPrice: 22000
   maximumHeight: 10
   maximumSlope: 45
   heightPenalty: 1.5
   slopePenalty: 2
+  factoryWeight: 10
+  storeWeight: 6
+  siloWeight: 40
+  weightFactor: 0.001
+  pollutionFactor: 0.01
+  fogFactor: 0.005
+  fogColor:
+    serializedVersion: 2
+    key0: {r: 0.11764706, g: 0.4627451, b: 0.9137255, a: 1}
+    key1: {r: 0.5283019, g: 0.4757658, b: 0.20683517, a: 1}
+    key2: {r: 0.406, g: 0.30131507, b: 0.11652197, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 47513
+    ctime2: 65535
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 3
+    m_NumAlphaKeys: 2
+  minimumDensity: 0.01
+  maximumDensity: 0.05
+  capitalText: {fileID: 0}
+  rayCastDistance: 500
+  selectedBuildingFade: 0.5
+  selectedBuildingBuildableColor: {r: 0, g: 0.6666665, b: 1, a: 1}
+  selectedBuildingBuildableEffect: 0.75
+  selectedBuildingUnbuildableColor: {r: 1, g: 0, b: 0, a: 1}
+  selectedBuildingUnbuildableEffect: 0.75

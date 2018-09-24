@@ -67,7 +67,7 @@ MonoBehaviour:
   - 0.5
   - 0.2
   - 0.1
-  hexagonPrefab: {fileID: 1840991476286418, guid: 8254c02b596fa3a4cba13e416592a57a,
+  hexagonPrefab: {fileID: 114735596413596418, guid: 8254c02b596fa3a4cba13e416592a57a,
     type: 2}
   rockMaterial: {fileID: 2100000, guid: 6c7034e4fe6013642b4423600374397a, type: 2}
   sandMaterial: {fileID: 2100000, guid: 7e8709d5a117bd84abeac22bcaf5f36f, type: 2}
@@ -78,6 +78,8 @@ MonoBehaviour:
   minimumGrassHeight: 0.5
   minimumSnowHeight: 3
   minimumRockAngle: 45
+  sheepPrefab: {fileID: 114604715743027478, guid: 5d19079581e8f80439bf570c5e1085d3,
+    type: 2}
   ease: 15
   bouyancy: 100
   friction: 4

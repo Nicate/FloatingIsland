@@ -25,8 +25,8 @@ public class Island : MonoBehaviour {
 	[Space]
 	public float[] attenuations = new float[0];
 
-	[Header("Population")]
-	public GameObject hexagonPrefab;
+	[Header("Generation")]
+	public Hexagon hexagonPrefab;
 	
 	[Space]
 	public Material rockMaterial;
@@ -42,6 +42,9 @@ public class Island : MonoBehaviour {
 	
 	[Space]
 	public float minimumRockAngle = 90.0f;
+
+	[Header("Population")]
+	public Sheep sheepPrefab;
 
 	[Header("Animation")]
 	public float ease = 1.0f;
@@ -333,7 +336,7 @@ public class Island : MonoBehaviour {
 					material = rockMaterial;
 				}
 
-				GameObject hexagon = Instantiate<GameObject>(hexagonPrefab, vertex, Quaternion.identity, transform);
+				Hexagon hexagon = Instantiate<Hexagon>(hexagonPrefab, vertex, Quaternion.identity, transform);
 				hexagon.GetComponent<MeshRenderer>().material = material;
 				hexagon.name = "Hexagon " + a;
 			}
