@@ -51,18 +51,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7de5e048cae9e54186a40bef45a7282, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  size: 0.01
+  headPrefab: {fileID: 1347591489838636, guid: c18230a00904c884a831e4e94a38fd9e, type: 2}
+  headSize: {x: 1, y: 1, z: 1}
+  headLocation: {x: 0, y: 0, z: 1.25}
+  bodyPrefab: {fileID: 1361869376991082, guid: 470df1f09c9792b489d8a5e1e3a819c0, type: 2}
+  bodySize: {x: 2, y: 2, z: 3}
+  legPrefab: {fileID: 1347591489838636, guid: c18230a00904c884a831e4e94a38fd9e, type: 2}
+  legSize: {x: 2, y: 2, z: 2}
+  legLocation: {x: 0.6, y: -0.9, z: 0.6}
   fluffPrefab: {fileID: 1696624593793464, guid: 7d396df7b2604384d8cda35660851266,
     type: 2}
+  fluffSize: {x: 1, y: 1, z: 1}
   numberOfFluffs: 25000
   interval: 1
-  size: {x: 2, y: 2, z: 3}
-  scale: 0.01
   minimumDistance: 0.9
   maximumDistance: 1
+  distanceAttenuation: {x: 0, y: 0, z: 0}
   minimumThickness: 0.8
   maximumThickness: 1.2
+  thicknessAttenuation: {x: 0, y: 0, z: 0}
   minimumWoollyness: 1.5
   maximumWoollyness: 2
-  distanceAttenuation: {x: 0, y: 0, z: 0}
-  thicknessAttenuation: {x: 0, y: 0, z: 0}
   woollynessAttenuation: {x: 0, y: 0, z: 1}

@@ -2,34 +2,108 @@
 using UnityEngine;
 
 public class Sheep : MonoBehaviour {
+	[Header("Sheep")]
+	public float size;
+
+	[Header("Head")]
+	public GameObject headPrefab;
+	
+	public Vector3 headSize;
+	public Vector3 headLocation;
+
+	[Header("Body")]
+	public GameObject bodyPrefab;
+	
+	public Vector3 bodySize;
+
+	[Header("Legs")]
+	public GameObject legPrefab;
+	
+	public Vector3 legSize;
+	public Vector3 legLocation;
+
 	[Header("Fluff")]
 	public GameObject fluffPrefab;
-
+	
+	public Vector3 fluffSize;
+	
+	[Space]
 	public int numberOfFluffs;
 	
 	public float interval;
-
-	[Header("Size")]
-	public Vector3 size;
-
-	public float scale;
-
-	[Header("Wool")]
+	
+	[Space]
 	public float minimumDistance;
 	public float maximumDistance;
 
+	public Vector3 distanceAttenuation;
+	
+	[Space]
 	public float minimumThickness;
 	public float maximumThickness;
 
+	public Vector3 thicknessAttenuation;
+	
+	[Space]
 	public float minimumWoollyness;
 	public float maximumWoollyness;
 
-	public Vector3 distanceAttenuation;
-	public Vector3 thicknessAttenuation;
 	public Vector3 woollynessAttenuation;
 
 
 	private void Start() {
+		createBody();
+
+		createLeg(true, true);
+		createLeg(true, false);
+		createLeg(false, false);
+		createLeg(false, true);
+
+		createHead();
+
+		createFluffs();
+	}
+
+
+	private void createBody() {
+		Vector3 position = transform.position;
+
+		GameObject body = Instantiate(bodyPrefab, position, Quaternion.identity, transform);
+		body.name = "Body";
+
+		body.transform.localScale = bodySize * size * minimumDistance;
+	}
+
+	private void createLeg(bool front, bool right) {
+		Vector3 legPosition = Vector3.Scale(bodySize * size * minimumDistance, legLocation);
+
+		legPosition.x *= front ? 1.0f : -1.0f;
+		legPosition.z *= right ? 1.0f : -1.0f;
+		
+		Vector3 position = transform.position + legPosition;
+
+		GameObject leg = Instantiate(legPrefab, position, Quaternion.identity, transform);
+
+		string frontOrBackName = front ? "Front" : "Back";
+		string rightOrLeftName = right ? "Right" : "Left";
+
+		leg.name = frontOrBackName + " " + rightOrLeftName + " Leg";
+
+		leg.transform.localScale = legSize * size;
+	}
+
+	private void createHead() {
+		Vector3 headPosition = Vector3.Scale(bodySize * size * minimumDistance, headLocation);
+		
+		Vector3 position = transform.position + headPosition;
+
+		GameObject head = Instantiate(headPrefab, position, Quaternion.identity, transform);
+		head.name = "Head";
+
+		head.transform.localScale = headSize * size;
+	}
+
+	private void createFluffs() {
 		List<Vector3> positions = new List<Vector3>();
 
 		for(int index = 0; index < numberOfFluffs; index += 1) {
@@ -39,11 +113,11 @@ public class Sheep : MonoBehaviour {
 			
 			float distance = calculateAttenuation(alignment, distanceAttenuation, minimumDistance, maximumDistance);
 			
-			Vector3 position = transform.position + Vector3.Scale(normal, size) * distance * scale;
+			Vector3 position = transform.position + Vector3.Scale(normal, bodySize * size * distance);
 
 			bool outsideIntervals = true;
 			foreach(Vector3 otherPosition in positions) {
-				if(Vector3.Distance(position, otherPosition) < interval * scale) {
+				if(Vector3.Distance(position, otherPosition) < interval * size) {
 					outsideIntervals = false;
 				}
 			}
@@ -57,10 +131,9 @@ public class Sheep : MonoBehaviour {
 				float thickness = calculateAttenuation(alignment, thicknessAttenuation, minimumThickness, maximumThickness);
 				float woollyness = calculateAttenuation(alignment, woollynessAttenuation, minimumWoollyness, maximumWoollyness);
 
-				Vector3 localScale = fluff.transform.localScale;
-				localScale *= thickness * scale;
-				localScale.y *= woollyness;
-				fluff.transform.localScale = localScale;
+				Vector3 scale = fluffSize * size * thickness;
+				scale.y *= woollyness;
+				fluff.transform.localScale = scale;
 
 				positions.Add(position);
 			}
