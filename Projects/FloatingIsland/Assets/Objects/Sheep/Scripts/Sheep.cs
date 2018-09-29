@@ -5,22 +5,26 @@ public class Sheep : MonoBehaviour {
 	[Header("Sheep")]
 	public float size;
 
+	[Header("Body")]
+	public GameObject bodyPrefab;
+	
+	public Vector3 bodySize;
+	public Vector3 bodyLocation;
+	public Vector3 bodyRotation;
+
 	[Header("Head")]
 	public GameObject headPrefab;
 	
 	public Vector3 headSize;
 	public Vector3 headLocation;
+	public Vector3 headRotation;
 
-	[Header("Body")]
-	public GameObject bodyPrefab;
-	
-	public Vector3 bodySize;
-
-	[Header("Legs")]
+	[Header("Leg")]
 	public GameObject legPrefab;
 	
 	public Vector3 legSize;
 	public Vector3 legLocation;
+	public Vector3 legRotation;
 
 	[Header("Fluff")]
 	public GameObject fluffPrefab;
@@ -54,42 +58,28 @@ public class Sheep : MonoBehaviour {
 	private void Start() {
 		createBody();
 
+		createHead();
+
 		createLeg(true, true);
 		createLeg(true, false);
 		createLeg(false, false);
 		createLeg(false, true);
-
-		createHead();
 
 		createFluffs();
 	}
 
 
 	private void createBody() {
-		Vector3 position = transform.position;
+		Vector3 bodyPosition = Vector3.Scale(bodySize * size * minimumDistance, bodyLocation);
 
-		GameObject body = Instantiate(bodyPrefab, position, Quaternion.identity, transform);
+		Vector3 position = transform.position + bodyPosition;
+
+		Quaternion rotation = Quaternion.Euler(bodyRotation);
+
+		GameObject body = Instantiate(bodyPrefab, position, rotation, transform);
 		body.name = "Body";
 
 		body.transform.localScale = bodySize * size * minimumDistance;
-	}
-
-	private void createLeg(bool front, bool right) {
-		Vector3 legPosition = Vector3.Scale(bodySize * size * minimumDistance, legLocation);
-
-		legPosition.x *= front ? 1.0f : -1.0f;
-		legPosition.z *= right ? 1.0f : -1.0f;
-		
-		Vector3 position = transform.position + legPosition;
-
-		GameObject leg = Instantiate(legPrefab, position, Quaternion.identity, transform);
-
-		string frontOrBackName = front ? "Front" : "Back";
-		string rightOrLeftName = right ? "Right" : "Left";
-
-		leg.name = frontOrBackName + " " + rightOrLeftName + " Leg";
-
-		leg.transform.localScale = legSize * size;
 	}
 
 	private void createHead() {
@@ -97,10 +87,38 @@ public class Sheep : MonoBehaviour {
 		
 		Vector3 position = transform.position + headPosition;
 
-		GameObject head = Instantiate(headPrefab, position, Quaternion.identity, transform);
+		Quaternion rotation = Quaternion.Euler(headRotation);
+
+		GameObject head = Instantiate(headPrefab, position, rotation, transform);
 		head.name = "Head";
 
 		head.transform.localScale = headSize * size;
+	}
+
+	private void createLeg(bool right, bool front) {
+		Vector3 legPosition = Vector3.Scale(bodySize * size * minimumDistance, legLocation);
+		
+		legPosition.x *= right ? 1.0f : -1.0f;
+		legPosition.z *= front ? 1.0f : -1.0f;
+		
+		Vector3 position = transform.position + legPosition;
+
+		Vector3 thisLegRotation = legRotation;
+
+		// First flip the rotation along the X axis, then along the Y axis.
+		thisLegRotation.y = right ? thisLegRotation.y : 0.0f - thisLegRotation.y;
+		thisLegRotation.y = front ? thisLegRotation.y : 180.0f - thisLegRotation.y;
+
+		Quaternion rotation = Quaternion.Euler(thisLegRotation);
+
+		GameObject leg = Instantiate(legPrefab, position, rotation, transform);
+		
+		string rightOrLeftName = right ? "Right" : "Left";
+		string frontOrBackName = front ? "Front" : "Back";
+
+		leg.name = frontOrBackName + " " + rightOrLeftName + " Leg";
+		
+		leg.transform.localScale = legSize * size;
 	}
 
 	private void createFluffs() {

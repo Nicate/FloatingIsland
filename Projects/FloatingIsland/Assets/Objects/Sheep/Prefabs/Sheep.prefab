@@ -52,14 +52,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: 0.01
-  headPrefab: {fileID: 1347591489838636, guid: c18230a00904c884a831e4e94a38fd9e, type: 2}
-  headSize: {x: 1, y: 1, z: 1}
-  headLocation: {x: 0, y: 0, z: 1.25}
   bodyPrefab: {fileID: 1361869376991082, guid: 470df1f09c9792b489d8a5e1e3a819c0, type: 2}
   bodySize: {x: 2, y: 2, z: 3}
+  bodyLocation: {x: 0, y: 0, z: 0}
+  bodyRotation: {x: 0, y: 0, z: 0}
+  headPrefab: {fileID: 1303953331146914, guid: fa4eeb5985e27d444af41b1f87d1aab9, type: 2}
+  headSize: {x: 1, y: 1, z: 1}
+  headLocation: {x: 0, y: 0.2, z: 1.3}
+  headRotation: {x: 21, y: 0, z: 0}
   legPrefab: {fileID: 1347591489838636, guid: c18230a00904c884a831e4e94a38fd9e, type: 2}
   legSize: {x: 2, y: 2, z: 2}
   legLocation: {x: 0.6, y: -0.9, z: 0.6}
+  legRotation: {x: 4, y: 0, z: 0}
   fluffPrefab: {fileID: 1696624593793464, guid: 7d396df7b2604384d8cda35660851266,
     type: 2}
   fluffSize: {x: 1, y: 1, z: 1}
