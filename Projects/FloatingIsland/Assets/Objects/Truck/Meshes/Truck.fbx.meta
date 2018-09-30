@@ -25,11 +25,13 @@ ModelImporter:
     2300004: RightBackWheel
     2300006: RightFrontWheel
     2300008: Truck
+    2300010: //RootNode
     3300000: LeftBackWheel
     3300002: LeftFrontWheel
     3300004: RightBackWheel
     3300006: RightFrontWheel
     3300008: Truck
+    3300010: //RootNode
     4300000: LeftBackWheel
     4300002: LeftFrontWheel
     4300004: RightFrontWheel
