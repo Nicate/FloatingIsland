@@ -2,27 +2,23 @@ fileFormatVersion: 2
 guid: ac2a3560055927c40a8a2ba05b60f0e1
 ScriptedImporter:
   fileIDToRecycleName:
-    100000: Snow/Snow
-    400000: Snow/Snow/Transform
-    2100000: mat.Snow
-    2300000: Snow/Snow/MeshRenderer
-    2800000: Snow_Base Color
-    2800002: Snow_Normal
-    2800004: Snow_Metallic
-    2800006: Snow_Height
-    2800008: Snow_Roughness
-    3300000: Snow/Snow/MeshFilter
+    2100002: Snow
+    2800010: Snow - roughness
+    2800012: Snow - baseColor
+    2800014: Snow - normal
+    2800016: Snow - metallic
+    2800018: Snow - height
     11400000: sbsar
     11400002: graph0
-    13500000: Snow/Snow/SphereCollider
-    100100000: Snow
   externalObjects: {}
   userData: 
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 232528478, guid: 43a8bbf65be290d44ba52b94476242b9, type: 3}
+  version: 17
   mGraphInstanceData:
   - graphLabel: Snow
+    prototypeName: 
     graphDescIndex: 0
     generateAllOutputs: 1
     generateMipMaps: 1
@@ -31,51 +27,67 @@ ScriptedImporter:
     shaderName: Standard
     outputNames: Base Color,Normal,Metallic,Height
     texturePackingList:
-    - outputName: Base Color
-      alphaSource: Base Color
-    - outputName: Normal
-      alphaSource: Normal
-    - outputName: Roughness
-      alphaSource: Roughness
-    - outputName: Metallic
-      alphaSource: Smoothness
-    - outputName: Height
-      alphaSource: Height
+    - outputName: baseColor
+      alphaSource: baseColor
+    - outputName: normal
+      alphaSource: normal
+    - outputName: roughness
+      alphaSource: roughness
+    - outputName: metallic
+      alphaSource: smoothness
+    - outputName: height
+      alphaSource: height
+    textureParameters:
+    - textureName: Snow - roughness
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: Snow - baseColor
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: Snow - normal
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: Snow - metallic
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: Snow - height
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
     colorSpaceList:
-    - outputName: Base Color
+    - outputName: baseColor
       bLinear: 0
-    - outputName: Normal
+    - outputName: normal
       bLinear: 1
-    - outputName: Roughness
+    - outputName: roughness
       bLinear: 1
-    - outputName: Metallic
+    - outputName: metallic
       bLinear: 1
-    - outputName: Height
+    - outputName: height
       bLinear: 1
     inputTextureMap: []
     targetSettingList:
     - label: Default
-      bOverride: 0
       bLockRatio: 1
-      bHighQuality: 1
       textureWidth: 1024
       textureHeight: 1024
       textureFormat: 0
-      loadBehavior: 0
+      bGenerateOnLoad: 1
     - label: Standalone
-      bOverride: 0
       bLockRatio: 1
-      bHighQuality: 0
       textureWidth: 256
       textureHeight: 256
       textureFormat: 0
-      loadBehavior: 0
+      bGenerateOnLoad: 0
     - label: iPhone
-      bOverride: 0
       bLockRatio: 1
-      bHighQuality: 0
       textureWidth: 256
       textureHeight: 256
       textureFormat: 0
-      loadBehavior: 0
-    material: {fileID: 2100000, guid: ac2a3560055927c40a8a2ba05b60f0e1, type: 3}
+      bGenerateOnLoad: 0
+    material: {instanceID: 0}
+    generatedTextures: []

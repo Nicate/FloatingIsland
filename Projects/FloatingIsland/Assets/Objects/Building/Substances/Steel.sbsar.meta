@@ -2,27 +2,23 @@ fileFormatVersion: 2
 guid: 7a8e7309f053f6a419ba7aa7a4b69a8d
 ScriptedImporter:
   fileIDToRecycleName:
-    100000: Steel/Steel
-    400000: Steel/Steel/Transform
-    2100000: mat.Steel
-    2300000: Steel/Steel/MeshRenderer
-    2800000: Steel_Base Color
-    2800002: Steel_Normal
-    2800004: Steel_Metallic
-    2800006: Steel_Height
-    2800008: Steel_Roughness
-    3300000: Steel/Steel/MeshFilter
+    2100002: Steel
+    2800010: Steel - roughness
+    2800012: Steel - baseColor
+    2800014: Steel - normal
+    2800016: Steel - metallic
+    2800018: Steel - height
     11400000: sbsar
     11400002: graph0
-    13500000: Steel/Steel/SphereCollider
-    100100000: Steel
   externalObjects: {}
   userData: 
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 232528478, guid: 43a8bbf65be290d44ba52b94476242b9, type: 3}
+  version: 17
   mGraphInstanceData:
   - graphLabel: Steel
+    prototypeName: 
     graphDescIndex: 0
     generateAllOutputs: 1
     generateMipMaps: 1
@@ -31,51 +27,67 @@ ScriptedImporter:
     shaderName: Standard
     outputNames: Base Color,Normal,Metallic,Height
     texturePackingList:
-    - outputName: Base Color
-      alphaSource: Base Color
-    - outputName: Normal
-      alphaSource: Normal
-    - outputName: Roughness
-      alphaSource: Roughness
-    - outputName: Metallic
-      alphaSource: Smoothness
-    - outputName: Height
-      alphaSource: Height
+    - outputName: baseColor
+      alphaSource: baseColor
+    - outputName: normal
+      alphaSource: normal
+    - outputName: roughness
+      alphaSource: roughness
+    - outputName: metallic
+      alphaSource: smoothness
+    - outputName: height
+      alphaSource: height
+    textureParameters:
+    - textureName: Steel - roughness
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: Steel - baseColor
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: Steel - normal
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: Steel - metallic
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: Steel - height
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
     colorSpaceList:
-    - outputName: Base Color
+    - outputName: baseColor
       bLinear: 0
-    - outputName: Normal
+    - outputName: normal
       bLinear: 1
-    - outputName: Roughness
+    - outputName: roughness
       bLinear: 1
-    - outputName: Metallic
+    - outputName: metallic
       bLinear: 1
-    - outputName: Height
+    - outputName: height
       bLinear: 1
     inputTextureMap: []
     targetSettingList:
     - label: Default
-      bOverride: 0
       bLockRatio: 1
-      bHighQuality: 1
       textureWidth: 1024
       textureHeight: 1024
       textureFormat: 0
-      loadBehavior: 0
+      bGenerateOnLoad: 1
     - label: Standalone
-      bOverride: 0
       bLockRatio: 1
-      bHighQuality: 0
       textureWidth: 256
       textureHeight: 256
       textureFormat: 0
-      loadBehavior: 0
+      bGenerateOnLoad: 0
     - label: iPhone
-      bOverride: 0
       bLockRatio: 1
-      bHighQuality: 0
       textureWidth: 256
       textureHeight: 256
       textureFormat: 0
-      loadBehavior: 0
-    material: {fileID: 2100000, guid: 7a8e7309f053f6a419ba7aa7a4b69a8d, type: 3}
+      bGenerateOnLoad: 0
+    material: {instanceID: 0}
+    generatedTextures: []

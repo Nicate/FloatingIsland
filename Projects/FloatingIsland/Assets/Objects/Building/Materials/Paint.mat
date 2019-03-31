@@ -5,7 +5,8 @@ Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: Paint
   m_Shader: {fileID: 4800000, guid: 55d2d2231bfae2a489e570ca554b1d5f, type: 3}
   m_ShaderKeywords: 
@@ -19,35 +20,35 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Building_AlbedoTexture:
-        m_Texture: {fileID: 2800000, guid: de5552ae839f050418791c96ff43a6e0, type: 3}
+        m_Texture: {fileID: 2800012, guid: de5552ae839f050418791c96ff43a6e0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Building_HeightTexture:
-        m_Texture: {fileID: 2800006, guid: de5552ae839f050418791c96ff43a6e0, type: 3}
+        m_Texture: {fileID: 2800018, guid: de5552ae839f050418791c96ff43a6e0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Building_NormalTexture:
-        m_Texture: {fileID: 2800002, guid: de5552ae839f050418791c96ff43a6e0, type: 3}
+        m_Texture: {fileID: 2800014, guid: de5552ae839f050418791c96ff43a6e0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Building_RoughnessTexture:
-        m_Texture: {fileID: 2800008, guid: de5552ae839f050418791c96ff43a6e0, type: 3}
+        m_Texture: {fileID: 2800010, guid: de5552ae839f050418791c96ff43a6e0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Grunge_AlbedoTexture:
-        m_Texture: {fileID: 2800000, guid: 5705a6f025dad1c459cf373b19f6eacf, type: 3}
+        m_Texture: {fileID: 2800012, guid: 5705a6f025dad1c459cf373b19f6eacf, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Grunge_HeightTexture:
-        m_Texture: {fileID: 2800006, guid: 5705a6f025dad1c459cf373b19f6eacf, type: 3}
+        m_Texture: {fileID: 2800018, guid: 5705a6f025dad1c459cf373b19f6eacf, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Grunge_NormalTexture:
-        m_Texture: {fileID: 2800002, guid: 5705a6f025dad1c459cf373b19f6eacf, type: 3}
+        m_Texture: {fileID: 2800014, guid: 5705a6f025dad1c459cf373b19f6eacf, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Grunge_RoughnessTexture:
-        m_Texture: {fileID: 2800008, guid: 5705a6f025dad1c459cf373b19f6eacf, type: 3}
+        m_Texture: {fileID: 2800010, guid: 5705a6f025dad1c459cf373b19f6eacf, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:

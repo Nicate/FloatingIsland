@@ -2,23 +2,19 @@ fileFormatVersion: 2
 guid: cc3b78230d16e7244b209125546fe27d
 ScriptedImporter:
   fileIDToRecycleName:
-    100000: Radiator/Radiator
-    400000: Radiator/Radiator/Transform
-    2100000: mat.Radiator
-    2300000: Radiator/Radiator/MeshRenderer
-    2800010: Radiator_Alpha
-    3300000: Radiator/Radiator/MeshFilter
+    2100002: Radiator
+    2800000: Radiator - UNKNOWN
     11400000: sbsar
     11400002: graph0
-    13500000: Radiator/Radiator/SphereCollider
-    100100000: Radiator
   externalObjects: {}
   userData: 
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 232528478, guid: 43a8bbf65be290d44ba52b94476242b9, type: 3}
+  version: 17
   mGraphInstanceData:
   - graphLabel: Radiator
+    prototypeName: 
     graphDescIndex: 0
     generateAllOutputs: 1
     generateMipMaps: 1
@@ -28,51 +24,51 @@ ScriptedImporter:
     shaderName: Standard
     outputNames: 
     texturePackingList:
-    - outputName: Base Color
-      alphaSource: Base Color
-    - outputName: Normal
-      alphaSource: Normal
-    - outputName: Roughness
-      alphaSource: Roughness
-    - outputName: Metallic
-      alphaSource: Smoothness
-    - outputName: Height
-      alphaSource: Height
+    - outputName: baseColor
+      alphaSource: baseColor
+    - outputName: normal
+      alphaSource: normal
+    - outputName: roughness
+      alphaSource: roughness
+    - outputName: metallic
+      alphaSource: smoothness
+    - outputName: height
+      alphaSource: height
+    textureParameters:
+    - textureName: Radiator - UNKNOWN
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
     colorSpaceList:
-    - outputName: Base Color
+    - outputName: baseColor
       bLinear: 0
-    - outputName: Normal
+    - outputName: normal
       bLinear: 1
-    - outputName: Roughness
+    - outputName: roughness
       bLinear: 1
-    - outputName: Metallic
+    - outputName: metallic
       bLinear: 1
-    - outputName: Height
+    - outputName: height
       bLinear: 1
     inputTextureMap: []
     targetSettingList:
     - label: Default
-      bOverride: 0
       bLockRatio: 1
-      bHighQuality: 1
       textureWidth: 1024
       textureHeight: 1024
       textureFormat: 0
-      loadBehavior: 0
+      bGenerateOnLoad: 1
     - label: Standalone
-      bOverride: 0
       bLockRatio: 1
-      bHighQuality: 0
       textureWidth: 256
       textureHeight: 256
       textureFormat: 0
-      loadBehavior: 0
+      bGenerateOnLoad: 0
     - label: iPhone
-      bOverride: 0
       bLockRatio: 1
-      bHighQuality: 0
       textureWidth: 256
       textureHeight: 256
       textureFormat: 0
-      loadBehavior: 0
-    material: {fileID: 2100000, guid: cc3b78230d16e7244b209125546fe27d, type: 3}
+      bGenerateOnLoad: 0
+    material: {instanceID: 0}
+    generatedTextures: []

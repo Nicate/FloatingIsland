@@ -5,7 +5,8 @@ Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: SnowAndRock
   m_Shader: {fileID: 4800000, guid: d9d400c58e58ec74fa85a024b6fb372b, type: 3}
   m_ShaderKeywords: 
@@ -19,35 +20,35 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Base_AlbedoTexture:
-        m_Texture: {fileID: 2800000, guid: 34dc9549605c73c4883fcfccfcc0d368, type: 3}
+        m_Texture: {fileID: 2800012, guid: 34dc9549605c73c4883fcfccfcc0d368, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Base_HeightTexture:
-        m_Texture: {fileID: 2800006, guid: 34dc9549605c73c4883fcfccfcc0d368, type: 3}
+        m_Texture: {fileID: 2800018, guid: 34dc9549605c73c4883fcfccfcc0d368, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Base_NormalTexture:
-        m_Texture: {fileID: 2800002, guid: 34dc9549605c73c4883fcfccfcc0d368, type: 3}
+        m_Texture: {fileID: 2800014, guid: 34dc9549605c73c4883fcfccfcc0d368, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Base_RoughnessTexture:
-        m_Texture: {fileID: 2800008, guid: 34dc9549605c73c4883fcfccfcc0d368, type: 3}
+        m_Texture: {fileID: 2800010, guid: 34dc9549605c73c4883fcfccfcc0d368, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Side_AlbedoTexture:
-        m_Texture: {fileID: 2800000, guid: ff4cb4ded95a77946b516eaa908eb44d, type: 3}
+        m_Texture: {fileID: 2800012, guid: ff4cb4ded95a77946b516eaa908eb44d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Side_HeightTexture:
-        m_Texture: {fileID: 2800006, guid: ff4cb4ded95a77946b516eaa908eb44d, type: 3}
+        m_Texture: {fileID: 2800018, guid: ff4cb4ded95a77946b516eaa908eb44d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Side_NormalTexture:
-        m_Texture: {fileID: 2800002, guid: ff4cb4ded95a77946b516eaa908eb44d, type: 3}
+        m_Texture: {fileID: 2800014, guid: ff4cb4ded95a77946b516eaa908eb44d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Side_RoughnessTexture:
-        m_Texture: {fileID: 2800008, guid: ff4cb4ded95a77946b516eaa908eb44d, type: 3}
+        m_Texture: {fileID: 2800010, guid: ff4cb4ded95a77946b516eaa908eb44d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Side_SmoothnessTexture:
@@ -55,19 +56,19 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Top_AlbedoTexture:
-        m_Texture: {fileID: 2800000, guid: ac2a3560055927c40a8a2ba05b60f0e1, type: 3}
+        m_Texture: {fileID: 2800012, guid: ac2a3560055927c40a8a2ba05b60f0e1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Top_HeightTexture:
-        m_Texture: {fileID: 2800006, guid: ac2a3560055927c40a8a2ba05b60f0e1, type: 3}
+        m_Texture: {fileID: 2800018, guid: ac2a3560055927c40a8a2ba05b60f0e1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Top_NormalTexture:
-        m_Texture: {fileID: 2800002, guid: ac2a3560055927c40a8a2ba05b60f0e1, type: 3}
+        m_Texture: {fileID: 2800014, guid: ac2a3560055927c40a8a2ba05b60f0e1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Top_RoughnessTexture:
-        m_Texture: {fileID: 2800008, guid: ac2a3560055927c40a8a2ba05b60f0e1, type: 3}
+        m_Texture: {fileID: 2800010, guid: ac2a3560055927c40a8a2ba05b60f0e1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Top_SmoothnessTexture:

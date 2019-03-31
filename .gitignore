@@ -5,9 +5,9 @@
 /Projects/FloatingIsland/Logs/
 /Projects/FloatingIsland/Build/
 /Projects/FloatingIsland/Builds/
+/Projects/FloatingIsland/Assets/Allegorithmic*
 /Projects/FloatingIsland/Assets/AssetStoreTools*
-/Projects/FloatingIsland/Assets/Plugins/
-/Projects/FloatingIsland/Assets/Plugins.meta
+/Projects/FloatingIsland/Assets/Plugins*
 *.pidb.meta
 sysinfo.txt
 

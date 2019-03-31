@@ -5,7 +5,8 @@ Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: Water
   m_Shader: {fileID: 4800000, guid: 15bebd5dc772126478f0ad39261d9472, type: 3}
   m_ShaderKeywords: AMPLIFY_ON WAVES_ON
@@ -19,35 +20,35 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Foam_AlbedoTexture:
-        m_Texture: {fileID: 2800000, guid: 98da4636ccdca1f44adb7bbbe6cfee28, type: 3}
+        m_Texture: {fileID: 2800012, guid: 98da4636ccdca1f44adb7bbbe6cfee28, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Foam_HeightTexture:
-        m_Texture: {fileID: 2800006, guid: 98da4636ccdca1f44adb7bbbe6cfee28, type: 3}
+        m_Texture: {fileID: 2800018, guid: 98da4636ccdca1f44adb7bbbe6cfee28, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Foam_NormalTexture:
-        m_Texture: {fileID: 2800002, guid: 98da4636ccdca1f44adb7bbbe6cfee28, type: 3}
+        m_Texture: {fileID: 2800014, guid: 98da4636ccdca1f44adb7bbbe6cfee28, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Foam_RoughnessTexture:
-        m_Texture: {fileID: 2800008, guid: 98da4636ccdca1f44adb7bbbe6cfee28, type: 3}
+        m_Texture: {fileID: 2800010, guid: 98da4636ccdca1f44adb7bbbe6cfee28, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Water_AlbedoTexture:
-        m_Texture: {fileID: 2800000, guid: 785b62d102154564b8d914d7f3e493b9, type: 3}
+        m_Texture: {fileID: 2800012, guid: 785b62d102154564b8d914d7f3e493b9, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Water_HeightTexture:
-        m_Texture: {fileID: 2800006, guid: 785b62d102154564b8d914d7f3e493b9, type: 3}
+        m_Texture: {fileID: 2800018, guid: 785b62d102154564b8d914d7f3e493b9, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Water_NormalTexture:
-        m_Texture: {fileID: 2800002, guid: 785b62d102154564b8d914d7f3e493b9, type: 3}
+        m_Texture: {fileID: 2800014, guid: 785b62d102154564b8d914d7f3e493b9, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Water_RoughnessTexture:
-        m_Texture: {fileID: 2800008, guid: 785b62d102154564b8d914d7f3e493b9, type: 3}
+        m_Texture: {fileID: 2800010, guid: 785b62d102154564b8d914d7f3e493b9, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
